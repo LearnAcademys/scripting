@@ -1,0 +1,2907 @@
+Devops Introductory Class : Linux
+Installing Ubuntu using windows subsystem for Linux (wsl)
+wsl --install : to install wsl and enables the virtual machine platform and windows subsystem for linux
+
+wsl --list --verbose
+
+wsl --set-default-version 2
+
+wsl --list --verbose : checking for the installed distros
+
+install Ubuntu from microsoft store
+
+The following is a list of valid distributions that can be installed.
+Install using 'wsl --install -d <Distro>'.
+
+NAME                            FRIENDLY NAME
+Ubuntu                          Ubuntu
+Debian                          Debian GNU/Linux
+kali-linux                      Kali Linux Rolling
+Ubuntu-20.04                    Ubuntu 20.04 LTS
+Ubuntu-22.04                    Ubuntu 22.04 LTS
+Ubuntu-24.04                    Ubuntu 24.04 LTS
+OracleLinux_7_9                 Oracle Linux 7.9
+OracleLinux_8_10                Oracle Linux 8.10
+OracleLinux_9_5                 Oracle Linux 9.5
+openSUSE-Leap-15.6              openSUSE Leap 15.6
+SUSE-Linux-Enterprise-15-SP6    SUSE Linux Enterprise 15 SP6
+openSUSE-Tumbleweed             openSUSE Tumbleweed
+
+==========================================================================
+linux 2 24092025
+==========================================================================
+What is DevOps?  #DevOps is a set of practices, principles, and cultural philosophies that 
+                   # bring together software development (Dev) and IT operations (Ops).
+                   #The goal is to improve the speed, quality, and reliability of software delivery 
+                   #by breaking down silos between developers and system administrators
+
+ Software Development Life Cycle (SDLC)
+
+SDLC is the process of planning, creating, testing, deploying, and maintaining software.
+It’s like the blueprint for building software, just like engineers follow steps when constructing a bridge.
+
+The two most common models are:
+
+Waterfall (traditional)
+
+Agile (modern/iterative)
+
+1️⃣ Waterfall Model
+📝 How It Works
+
+Linear and sequential → each phase must finish before the next starts.
+
+Looks like a waterfall, flowing down step by step.
+
+🔹 Phases
+
+Requirement Gathering → understand what the client wants.
+
+Design → plan the architecture.
+
+Implementation (Coding) → developers write code.
+
+Testing → QA team tests the system. #qat #uat
+
+Deployment → deliver to customer.
+
+Maintenance → fix bugs, updates.
+
+🔹 Example
+
+Imagine you’re building software for a bank ATM:
+
+Step 1: Collect requirements → “ATM must allow withdrawals, deposits, balance checks.”
+
+Step 2: Design system → database schema, UI layout.
+
+Step 3: Code everything.
+
+Step 4: Test after coding is complete.
+
+Step 5: Deploy to ATMs.
+👉 If requirements change later (e.g., “add mobile money transfer”), it’s very costly because you must redo design + code.
+example: 
+
+NASA uses Waterfall for spacecraft software. Why? Because once launched, you can’t update software easily → everything must be perfect before release.
+
+Agile Model
+📝 How It Works
+
+Iterative & incremental → software is developed in small cycles (sprints).
+
+Emphasizes flexibility, customer feedback, and continuous improvement.
+
+🔹 Agile Principles
+
+Work is divided into sprints (usually 2–4 weeks).
+
+Each sprint delivers a working product increment.
+
+Feedback is given at the end of each sprint → changes are adapted quickly.
+
+🔹 Example
+
+Imagine you’re building a food delivery app:
+
+Sprint 1: Build login + signup.
+
+Sprint 2: Add restaurant browsing.
+
+Sprint 3: Add cart + order placement.
+
+Sprint 4: Add payments.
+👉 The customer sees progress after each sprint and can request changes early (e.g., “add PayPal instead of only credit card”).
+
+Waterfall vs Agile (Quick Comparison)
+Aspect	                 Waterfall 🏞️	                                    Agile 🚀
+Process	          Sequential (step by step)	                      Iterative (small cycles/sprints)
+Flexibility       Low → hard to change later	                High → easy to adapt to new needs
+Testing	           After coding is complete	                      Continuous, in every sprint
+Delivery	      Single release at the end	Frequent                  releases (every 2–4 weeks)
+Example Use Case	   NASA spacecraft software                   	Food delivery app, Spotify, e-commerce
+
+================
+#####Linux and Linux commands:##############
+=========================
+Computers:
+  Laptop 
+  Desktop 
+  workstations 
+  Servers ---- Super Computers 
+Components of a Computer
+   1. Hardware Components = A bare metal 
+        Screen / CPU / Keyboard / Hard disk / RAM / MOUSE
+   2. Software Components
+      1. Operating System
+      2. Anti-Virus  
+      3. Office 
+  
+Computer Vendors:  hp laptop $900 [hw=600, sw-OS =300]
+  hp --- Your HP laptop is running with a windows OS   
+  dell 
+  lenovo -Your laptop is running with a Linux OS 
+  acer 
+  microsoft 
+  toshiba
+  apple --- Your laptop is running with a MacOS  
+Operating Systems: 
+  Windows OS---> License are required (paid for)
+    Windows 7, 8, XP, 10, 11 Home OS 
+    Windows 7, 8, XP, 10, 11 Professional OS 
+    Windows Server 2008, 2012, 2016, 2019 
+  MacOS   --->  
+  Linux OS: free and Open source OS 
+
+     Linux Computers(Servers);  
+     Linux Commands:
+
+# Operating System (OS) = LINUX OR Windows, Solaris 
+=======================================
+Solaris kernel 
+and Developed the Linux kernel 
+In 1991 Linus was using the Solaris kernel to manage his project
+  Solaris 
+     kernel 
+       Developed LINUX OS from Solaris kernel  
+
+ Solaris is a paid and Licence OS 
+   He contacted the Vendor of Solaris SUN System 
+  ===============================================  
+
+# Open source vs FREE OS 
+Open source: -- both the source codes and the softwares are free 
+Free: --- ONLY the softwares is free  
+Licence technology: softwares is not free
+
+LINUX         vs      Windows:
+Open source           Licence
+virus=no              Virus=Yes
+case sensitive        not case sensitive 
+LS =! Ls, lS ls       LS, Ls, lS ls 
+use for backend       workstations 
+backend 80%Linux      20% backend
+MULTI-DESTRIBUTIONS    Single distribution
+ Redhat 
+ CentOS 
+ ubuntu 
+
+ connecting to your ec2 instance
+  ubuntu@ec2-18-209-62-228.compute-1.amazonaws.com
+
+
+
+Connecting to the Linux Server in AWS:
+  1. We connect into Linux servers using ssh protocol 
+     We connect into Linux servers via ssh on port 22 
+     ssh = secure shell (scured connection) 
+     ssh listens on port 22 
+  2. We need an ssh-client Software:
+       mobaXterm 
+       puTTy 
+       git-base 
+  3. we need to be authenticated using:
+      userName:  ec2-user
+        password: Success@2022
+        ssh-private-key: class2key.pem 
+  4. We need the server's address
+        public-ipAddress =  52.90.194.35
+        private-ipAddress = 172.31.85.226
+        hostName = jumia.com  
+        dns-name 
+ssh -i "class2key.pem" ec2-user@ec2-52-90-194-35.compute-1.amazonaws.com
+
+ssh -i class28key.pem ec2-user@52.90.194.35
+
+  remote host address: 52.87.248.166
+  ssh-private-key: class2key.pem
+  userName: ec2-user
+
+  commands: -
+            ssh learnacademy@52.87.248.166
+            ssh -i class2key.pem ec2-user@52.87.248.166
+MacOS: Terminal / git-bash
+Windows: mobaXterm/git-bash / puTTy
+
+1. Open an SSH client.
+2. Locate your private key file. 
+   The key used to launch this instance is class2key.pem
+3. Run this command, if necessary, to ensure your key is not publicly viewable.
+       cd Downloads
+       chmod 400 class28key.pem
+Connect to your instance using its Public DNS:
+ ec2-52-87-248-166.compute-1.amazonaws.com
+Example:
+ ssh -i "class2key.pem" ec2-user@ec2-52-87-248-166.compute-1.amazonaws.com
+
+Managing Servers (Linux or Windows)
+Running tasks or workloads in a server:
+ 1. GUI     = Graphical User Interface 
+              Typing  
+ 2. CLI     = Command Line Interface 
+         mkdir git sonaQube jenkins aws azure  
+ 3. Scripts = List of instructions/commands that automate workloads 
+
+Windows File/Directory Structure
+   c:// = The root Directory [folder] 
+   Files and Folders & sub folders
+     mkdir git sonaQube jenkins aws azure gcp
+Linux File/Directory Structure
+  Files and Directory & sub Directories 
+  Files = Files for Linux/windows
+  Folders = Windows and Directory for Linux
+
+Linux File Structure:
+    /  is the root Directory in Linux servers 
+
+/home - user's home Directory details 
+======
+ec2-user 
+learnacademy 
+john doe 
+linux  
+
+/bin = contains binary files [commands]
+=====
+  ls 
+  pwd = print working Directory 
+  whoami 
+  cd  = change Directory
+  cat = displays the content of a file 
+  clear = 
+
+/sbin - contains system binary files [commands]
+=====
+  - contains system binary files [commands]
+    Executed ONLY by priviledge/admin/root users 
+  - adduser emmanuel
+  - passwd emmanuel
+
+IQ: What is the difference between bin and sbin in Linux? 
+ sbin are binary flies only executable by users 
+   with admin and elevated priviledges 
+ bin files are executable by any user 
+ ls = list the content of a Directory
+
+IQ: Explain how users are categorised in Linux?
+    We have three category of users in Linux:
+
+    1. admin/root user  = super user that runs all commands 
+    2. normal users  = runs executables in /bin 
+
+    3. system users 
+        Users created when we install certain softwares 
+
+/etc = contains configuration files 
+=====
+  /etc/ssh/sshd_config 
+  /etc/shadow  = detail information about users password 
+  /etc/passwd  = detail information about users 
+     cat /etc/passwd
+ubuntu@ip-172-31-19-251:/etc$ ls
+ModemManager            cron.hourly           groff                ld.so.conf      modprobe.d              pki           security           systemd
+     
+ 
+/tmp == temporal Directory 
+============
+
+/opt  = Where softwares and packages are installed
+=====
+
+/lib  = 
+====
+
+/proc 
+=======
+-  meminfo 
+-  cpuinfo 
+
+/var = dynamic files [logs]
+========================== 
+ - /var/lob/messages 
+    sudo cat /var/log/messages
+
+============
+/
+ls /  
+bin   data  etc   lib    media  opt   root  sbin  sys  usr
+boot  dev   home  lib64  mnt    proc  run   srv   tmp  var
+
+ ###### Basic Linux Commands ################
+=====================
+How do you run Linux commands in your learnacademy projects?
+1. Create a Linux server in AWS Cloud
+2. Connect via ssh into the server 
+   make sure the ssh port 22 is open in the server's firewall
+3. Start running task/workloads using commands.
+Creating, Navigation and Directory Control Commands: 
+      mkdir = create directory  
+      cd    = directory navigation   
+      ls    = list files and directories
+      pwd   = where are you located in the server 
+              print/present working Directory 
+
+     ls     = list the content of pwd 
+     ls /   = list the content of the root Directory  
+     ls /tmp = list the content of the tmp directory 
+     ls /var/log = list the content of the /var/log directory
+
+      mkdir class2
+      mkdir devops
+      mkdir -v test 
+           -v verbose
+
+  sudo hostname demo 
+  sudo su - ec2-user 
+
+mkdir -pv lclass/lclass1/lclass2/lclass3 
+mkdir Devops/SDLC/Linux/Jenkins/Git/Maven/Nexus/
+mkdir -pv Devops/SDLC/Linux/Jenkins/Git/Maven/Nexus/
+  - p = will create both parent and child Directory
+
+
+  mkdir  Devops/
+  mkdir  Devops/SDLC/
+  mkdir  Devops/SDLC/Linux/
+  mkdir  Devops/SDLC/Linux/Jenkins/
+  mkdir  Devops/SDLC/Linux/Jenkins/Git/
+  mkdir  Devops/SDLC/Linux/Jenkins/Git/Maven/
+  mkdir  Devops/SDLC/Linux/Jenkins/Git/Maven/Nexus/
+
+ = tree cannot be found 
+
+ = yum install tree 
+   This command has to be run with superuser privileges
+   (under the root user on most systems)
+sudo = permit a user to run commands as another user or superuser 
+
+ sudo yum install tree
+
+[ec2-user@demo ~]$ tree
+.
+├ubuntu@ip-172-31-19-251:~$ tree
+.
+├── Devops
+│   └── SDLC
+│       └── Linux
+│           └── Jenkins
+│               └── Git
+│                   └── Maven
+│                       └── Nexus
+├── lclass
+│   └── lclass1
+│       └── lclass2
+│           └── lclass3
+├── learnacademy1
+│   ├── class
+│   │   └── pry1
+│   │       └── pry1a
+│   └── class1
+├── learnacademy2
+├── learnacademy3
+├── learnacademy4
+├── learnacademy5
+├── learnacademy6
+└── snap
+    └── tree
+        ├── 54
+        ├── common
+        │   └── marker_publisher_changed_announcement_shown
+        └── current -> 54
+
+
+=========================
+Deleting an empty directory:
+   rmdir dirName 
+     rmdir gtbank/
+   rm -r dirName
+     rm -r cnn/
+
+learnacademy@DESKTOP-53E8O1K:~$ rmdir learnacademy
+rmdir: failed to remove 'learnacademy': Directory not empty
+
+Deleting a directory with content:
+   rm -r dirName 
+   rm -rf dirName 
+
+learnacademy@DESKTOP-53E8O1K:~$ rm -rf learnacademy1
+learnacademy@DESKTOP-53E8O1K:~$ ls
+learnacademy  learnacademy2  learnacademy3  learnacademy4  learnacademy5  learnacademy6
+learnacademy@DESKTOP-53E8O1K:~$
+
+Deleting all directories that start with a
+   'class' or a 'given pattern'
+   rm -rf class*  
+
+  * = wild card 
+
+  =======================================================
+  learnacademy@DESKTOP-53E8O1K:~$ ls
+class   class2  class4  learnacademy   learnacademy3  learnacademy5
+class1  class3  class5  learnacademy2  learnacademy4  learnacademy6
+learnacademy@DESKTOP-53E8O1K:~$ rm -rf class*
+learnacademy@DESKTOP-53E8O1K:~$ ls
+learnacademy  learnacademy2  learnacademy3  learnacademy4  learnacademy5  learnacademy6
+learnacademy@DESKTOP-53E8O1K:~$
+====================================================================
+
+Deleting all directories that ends with a
+   'app' or a 'given pattern'
+   rm -rf *app   
+
+cd  = directory navigation
+
+[ec2-user@demo ~]$ pwd
+pwd = /home/ec2-user
+pwd =  /home/ec2-user/Devops/SDLC/Linux
+
+cd .. 
+cd ../../
+cd - = moves you to the  directory you were before
+
+learnacademy@DESKTOP-53E8O1K:~/learnacademy3$ pwd
+/home/learnacademy/learnacademy3
+learnacademy@DESKTOP-53E8O1K:~/learnacademy3$ cd ..
+learnacademy@DESKTOP-53E8O1K:~$ pwd
+/home/learnacademy
+learnacademy@DESKTOP-53E8O1K:~$ cd learnacademy4
+learnacademy@DESKTOP-53E8O1K:~/learnacademy4$ cd ../..
+learnacademy@DESKTOP-53E8O1K:/home$ pwd
+/home
+
+cd / 
+cd /bin 
+cd /etc 
+
+File management:
+  touch fileName 
+  touch list.txt 
+  echo command 
+  echo  DevOps is good
+  echo 'I am Great'
+  echo I am extraordinary
+  echo "I am Great" > learnacademy.sh 
+  echo  DevOps is good > hired
+
+ls = 
+ll or ls -l = long list the content of
+              a directory
+
+ls -lt = long list base on time  
+ls -ltr 
+Why/how are some files hidden
+Important files are hidden 
+ to avoid accidental delete
+  rm -rf class* 
+  mkdir .config 
+  touch .deploy 
+
+IQ: How can you display hidden files/dirs?
+   ls -a 
+
+Path to files/directories:
+
+  relative path and 
+    start pwd 
+    cat test
+    ls Devops/ 
+
+  absolute path
+      start from root dir (/) 
+    cat /home/ec2-user/test
+    ls /home/ec2-user/Devops/
+
+Reading the content of a file:
+  cat fileName 
+  cat -n fileName 
+  cat test 
+  cat  /etc/passwd 
+      [users details] 
+  cat   /etc/shadow
+  sudo cat /etc/shadow
+        [users password] 
+ monitor.sh file has 5000 lines 
+   head fileName 
+      [display the 1st 10 lines]
+   tail fileName 
+      [display the last 10 lines]
+  tail -1 fileName
+     [displays the last line]
+  tail -4 fileName
+    [displays the last 4 lines]
+    ===============================================================
+    learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ cat -n result.txt
+     1  #!/bin/bash
+     2
+     3  # This is a sample Bash script.
+     4  # It prints a greeting message to the console.
+     5
+     6  echo "Hello, World!"
+     7
+     8  # This script prints a greeting message
+     9  echo "Hello, World!
+    10
+    11
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ cat result.txt
+#!/bin/bash
+
+# This is a sample Bash script.
+# It prints a greeting message to the console.
+
+echo "Hello, World!"
+
+# This script prints a greeting message
+echo "Hello, World!
+
+
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ head -4 result.txt
+#!/bin/bash
+
+# This is a sample Bash script.
+# It prints a greeting message to the console.
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ head -2 result.txt
+#!/bin/bash
+
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ tail -4 result.txt
+# This script prints a greeting message
+echo "Hello, World!
+=================================================================
+
+list :
+ nifemi 
+ ben 
+ sean 
+ john 
+ yamal 
+ James 
+ Titus 
+ neymar 
+ jenkins 
+ Windows 
+ Git 
+ Maven 
+ aws 
+ gcp 
+ camry 
+ bmw
+
+Modifying the content of a file:
+  Text editors:
+ Windows:
+    sublime text
+    bracket
+    notepad++
+    vs code 
+    atom 
+    eclipse 
+
+ Linux:
+  vi/vim editors
+  nano 
+  vi fileName 
+[ec2-user@demo ~]$ vim tools
+-bash: vim: command not found
+  sudo yum install vim  tree 
+  1. you start accessing the file in command mode 
+     press the 'i' key to enter insert mode 
+     press "esc key" to enter command mode 
+
+ Save and Quit: 
+     type :wq and press enter key to save and quit
+     do a quick double press on the shift+z key  
+       to save and quit 
+            press+hold 'shift key' and type ZZ
+ Quit without saving:  
+     enter command mode          
+     type :q! and press enter key to quit 
+           without saving
+
+Project:
+ create a file in using vi and explain your expection
+ in your the DevOps class2 Program.
+
+
+less fileName 
+       tools
+
+cat / tail / head /  less / more
+
+Cat / TAIL / Head /  less / more
+
+ cat Dev.txt 
+ cat DEV.txt 
+ cat dev.txt 
+
+cp = copy files [backup]
+mv = rename files/directories
+
+files:
+  mv fileName 
+  cp fileName
+
+directories:
+  mv dirName 
+  cp -r dirName 
+
+  =====================
+  learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls
+ben.txt  learnacademystaff  oladipo.txt  result.txt
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ mv learnacademypayroll/
+mv: missing destination file operand after 'learnacademypayroll/'
+Try 'mv --help' for more information.
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ mv learnacademypayroll
+mv: missing destination file operand after 'learnacademypayroll'
+Try 'mv --help' for more information.
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls
+ben.txt  learnacademystaff  oladipo.txt  result.txt
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ mv learnacademystaff/ learnacademypayroll
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls
+ben.txt  learnacademypayroll  oladipo.txt  result.txt
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ mv learnacademypayroll/ classactivity
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls
+ben.txt  classactivity  oladipo.txt  result.txt
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ cd classactivity/
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2/classactivity$ touch ben1.txt oladipo.sh
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2/classactivity$ ls
+ben1.txt  oladipo.sh
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2/classactivity$ cp classactivity classactivity2
+cp: cannot stat 'classactivity': No such file or directory
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2/classactivity$ pwd
+/home/learnacademy/learnacademy2/classactivity
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2/classactivity$ cd ..
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls
+ben.txt  classactivity  oladipo.txt  result.txt
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ cp classactivity classactivity2
+cp: -r not specified; omitting directory 'classactivity'
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ cp -r classactivity classactivity2
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls
+ben.txt  classactivity  classactivity2  oladipo.txt  result.txt
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ cat classactivity
+cat: classactivity: Is a directory
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ cd classactivity
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2/classactivity$ ls
+ben1.txt  oladipo.sh
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2/classactivity$ cd ..
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls
+ben.txt  classactivity  classactivity2  oladipo.txt  result.txt
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ cd classactivity2
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2/classactivity2$ ls
+ben1.txt  oladipo.sh
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2/classactivity2$ ls
+ben1.txt  oladipo.sh
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2/classactivity2$ cd ..
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls
+ben.txt  classactivity  classactivity2  oladipo.txt  result.txt
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ cp result.txt result.txt2
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls
+ben.txt  classactivity  classactivity2  oladipo.txt  result.txt  result.txt2
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ cat result.txt2
+#!/bin/bash
+
+# This is a sample Bash script.
+# It prints a greeting message to the console.
+
+echo "Hello, World!"
+
+# This script prints a greeting message
+echo "Hello, World!
+
+
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ cat result.txt
+#!/bin/bash
+
+# This is a sample Bash script.
+# It prints a greeting message to the console.
+
+echo "Hello, World!"
+
+# This script prints a greeting message
+echo "Hello, World!
+
+
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$
+  =========================
+
+file  
+wc  = word counts 
+  wc -l = no of lines 
+  wc -c = no of charesters in a file  
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ wc -l result.txt
+11 result.txt
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ wc -c result.txt
+177 result.txt
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$
+
+
+ln:  link 
+  fileName =  list 
+  ln list list-hard 
+       = hard link  [ln/cp]
+       = copy 
+  ln -s list list-soft 
+       = soft link 
+
+Deleting a file in Linux:
+ rm fileName 
+ rm list 
+ ================================
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls
+ben.txt  classactivity  classactivity2  oladipo.txt  result.txt  result.txt2  result.txt3
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ rm result.txt3
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls
+ben.txt  classactivity  classactivity2  oladipo.txt  result.txt  result.txt2
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$
+==============================
+Folders = Windows = Is a container of files and sub-folders/directories 
+Directories= Linux = Is a container of files and sub-folders 
+Files 
+learnacademy Systems =  fox 
+   mkdir fox 
+
+=========================================================
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls
+ben.txt  classactivity  classactivity2  oladipo.txt  result.txt  result.txt2
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ mkdir foxnews
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ mkdir arisenews
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls
+arisenews  ben.txt  classactivity  classactivity2  foxnews  oladipo.txt  result.txt  result.txt2
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$
+======================================================
+File permissions/security:
+-rw-rw-r--. 1 ec2-user ec2-user 45 Apr 23 08:33 list:  FILE
+lrwxrwxrwx. 1 ec2-user ec2-user  4 Apr 23 08:35 mylist : Link
+drwxrwxr-x. 2 ec2-user ec2-user  6 Apr 23 08:31 news: Directory
+-rw-rw-r--. 2 ec2-user ec2-user 45 Apr 23 08:33 list.hard: 
+1   2       3   4         5     6     7           8
+  Files start with '-' 
+  directories start with a 'd'
+  symbolic/soft links start with 'l'
+Fields for files:
+  1)  type (-file,)
+  2)  Permissions 
+  3)  Number of links
+  4)  Owner
+  5)  Group Owner
+  6)  Size of the File in Bytes
+  7)  Date and Time of creation
+  8)  File name/Dir Name 
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls -la
+total 40
+drwxr-xr-x  6 learnacademy learnacademy 4096 Oct  2 00:17 .
+drwxr-x--- 13 learnacademy learnacademy 4096 Oct  1 23:58 ..
+drwxr-xr-x  2 learnacademy learnacademy 4096 Oct  2 00:17 arisenews
+-rw-r--r--  1 learnacademy learnacademy   38 Oct  1 23:38 ben.txt
+drwxr-xr-x  2 learnacademy learnacademy 4096 Oct  2 00:06 classactivity
+drwxr-xr-x  2 learnacademy learnacademy 4096 Oct  2 00:08 classactivity2
+drwxr-xr-x  2 learnacademy learnacademy 4096 Oct  2 00:17 foxnews
+-rw-r--r--  1 learnacademy learnacademy   15 Oct  1 23:37 oladipo.txt
+-rw-r--r--  1 learnacademy learnacademy  177 Oct  1 23:41 result.txt
+-rw-r--r--  1 learnacademy learnacademy  177 Oct  2 00:10 result.txt2
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls -l
+total 32
+drwxr-xr-x 2 learnacademy learnacademy 4096 Oct  2 00:17 arisenews
+-rw-r--r-- 1 learnacademy learnacademy   38 Oct  1 23:38 ben.txt
+drwxr-xr-x 2 learnacademy learnacademy 4096 Oct  2 00:06 classactivity
+drwxr-xr-x 2 learnacademy learnacademy 4096 Oct  2 00:08 classactivity2
+drwxr-xr-x 2 learnacademy learnacademy 4096 Oct  2 00:17 foxnews
+-rw-r--r-- 1 learnacademy learnacademy   15 Oct  1 23:37 oladipo.txt
+-rw-r--r-- 1 learnacademy learnacademy  177 Oct  1 23:41 result.txt
+-rw-r--r-- 1 learnacademy learnacademy  177 Oct  2 00:10 result.txt2    
+Permission attributes:
+  Read    - r      = 4   grant read access for a user  
+  Write   - w      = 2   grant write/modify  access for a user
+  Execute - x      = 1   grant access to run the file as a command 
+           Normal Users:
+  Owner     Group             others: 
+  emmanuel  Engineers          anyone 
+  rw-=6     rw-=6              r--=4    = file = 664 
+  rwx=7     rwx=7              r-x=5    = Dir  = 775
+
+            root User:
+            su - userName [SU = SWITCH USER]
+            su - root
+        Password:
+        [ec2-user@demo cnn]$ sudo su - root
+   sudo permit priviledge users to run commands as other users
+d rwx r-x r-x. 2 root root    6 Apr 23 09:02 cbs
+- rw- r-- r--. 1 root root    0 Apr 23 09:01 deploy.java
+  Owner     Group             others: 
+  root       root              anyone 
+  rw-=6      r--=4              r--=4    = file =  644
+  rwx=7      r-x=5              r-x=5    = dir  =  755
+                  root user        Normal Users:
+                  File  Dir        File     Dir 
+Full Permissions  0666 0777        0666     0777
+Default perm.     0644 0755        0664     0775 
+                  ---- ----        ----     ----
+umask value       0022 0022        0002     0002
+                  ---- ----        ----     ----                  
+umask value set the Default files permissions for users.
+what is the Default file permissions for root and normal users?
+
+For our cnn project all files should carry 644 permissions 
+  Determine the umask value that should be set?
+                          File      Dir:
+  Full Permissions        0666     0777      
+  Expected permissions    0644
+                          -----
+  umask value             0022
+  ---
+
+For our jumia project all files should carry 444 permissions 
+  Determine the umask value that should be set?
+                          File      Dir:
+  Full Permissions        0666     0777      
+  Expected permissions    0444
+                          -----
+  umask value             0222
+  ---
+
+what is lixux kernel?
+
+The Linux kernel is monolithic, this means that the kernel carrries out CPU scheduling, memory management and several operations by itselfs.
+The Linux Kernel is also modular, which means it can extends its capabilities through the use of dynamically loaded kernel modules
+
+The Kernel is responsible for 4 major tasks
+Memory Management
+Process Management
+Device Drivers
+System calls and Security
+
+=======================================================================
+=======================================================================
+=======================================================================
+Linux Kernel Versions
+let us know identify the ways to identify linux kernel versions
+Use uname command to get the information about the kernel (by itself it doesn't provide much information except that the system uses the Linux Kernel.
+
+$ uname
+Use the uname -r or uname comamnd and option to print the kernel version
+
+$ uname -r
+$ uname -a
+
+===============================================================
+Working with Hardware
+===============================================================
+we will look at how linux works with the hardware resources available to the system and how to make use of kernel modules
+
+We will look at how linux identifies and manages hardware devices attached to the system
+We will then see ways to list and get detailed information about these devices from the command line.
+Lets take an example of USB Disk be used in the system.
+
+As soon as the USB device is attached to the system a corresponding device driver which is part of the kernel space detects the stage change and generates an event.
+This event which is called uevents is then sent to the User Space device manager daemon called udev.
+The udev service is then responsible for dynamically creating a device node associated with the newly attached USB drive in the /dev/ filesystem.
+Once the process is complete, the newly attached disk should be visible under /dev/ filesystem.
+
+Use $dmesg display messages from the area of kernel called Ring Buffer . When a linux operating system boots up there were numerous messages generated by the kernel that appear on the display screen. These messages also contain logs from the hardware devices that the kernel detects and provide good indication wheather it is able to configure
+
+$ dmesg
+$ dmesg | grep -i usb
+The udevadm is the management utility for udev which queries the database for device information.
+
+$ udevadm info --query=path --name=/dev/sda5
+
+To display detail information about the CPU such as CPU architecture, cpu op-modes (32 bit, 64 bit) etc.
+
+$ lscpu
+To list available memory in the system.
+
+$ lsmem --summary
+Another alternate command to see the information about the memory. This command will list total used and free memory.
+
+$ free -m
+To extract detail information about the entire hardware information of the machine
+
+$ lshw
+To run commands with root privileges. Not every user can run all the commands in the linux system some commands need to be run as the root or the super-user. Use sudo followed by ( input the sudo password ).
+$ sudo lshw
+
+To check the exact kernel version that is running in this system.
+
+$ uname -r
+what is the kernel version in 4.15.0-88-generic?
+
+Look for the first digit. In this case, it is 15
+What is the major version number of the kernel 4.15.0-88-generic
+
+Look for the second digit after the kernel version separated by a . In this case, it is 15
+Which command would you run to print the messages generated by the kernel?
+
+Type the command dmesg to see the messages.
+$ dmesg
+To list/count all block devices of type disk that are present in the system
+
+Run: lsblk and count the number of disk devices.
+$ lsblk
+To check total number of physical cores in the system.
+
+Run lscpu and multiply the Core(s) per socket with the number of Socket(s):
+$ lscpu
+To check total online memory
+
+Run the lsmem command and look for the value of online memory
+$ lsmem
+
+===============================================
+File Types in Linux
+===============================================
+In this section, we will take a look at different types of files in linux.
+
+Everything is a file in Linux.
+Every object in linux can be considered to be a type of file, even a directory for example is a special type of file.
+
+There are 3 types of files.
+1. Regular File
+2. Directory
+3. Special Files
+
+File Types in Linux
+
+📄 Regular File
+→ Images
+→ Scripts
+→ Configuration / Data files
+
+📂 Directory
+→ /home/bob
+→ /root
+→ /home/bob/code-directory
+
+📑 Special Files======================
+
+Special files are again catagorized into five other file types.
+
+Character Files ==================================================
+These files represent devices under the /dev file system.
+Examples include the devices such as the keyboard and mouse.
+Block Files
+These files represent block devices also located under /dev/ file system.
+Examples include the harddisks and RAM
+Links
+Links in linux is a way to associate two or more file names to the same set of file data.
+There are two types of links==============
+The Hard Link
+The Soft Link
+
+Hard Link
+→ A duplicate reference (points directly to the same data on disk)
+→ If the original file is deleted, the hard link still works
+
+Example:
+
+# Create a file
+echo "Hello DevOps" > file1.txt  
+
+# Create a hard link
+ln file1.txt file1_hard.txt  
+
+# Both files point to the same data
+cat file1_hard.txt  
+# Output: Hello DevOps
+
+ If you delete file1.txt, file1_hard.txt still contains the data.
+ ================================================================
+ learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ln result.txt2 result_hard.txt2
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls
+arisenews  ben.txt  classactivity  classactivity2  foxnews  oladipo.txt  result.txt  result.txt2  result_hard.txt2
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls -l
+total 36
+drwxr-xr-x 2 learnacademy learnacademy 4096 Oct  2 00:17 arisenews
+-rw-r--r-- 1 learnacademy learnacademy   38 Oct  1 23:38 ben.txt
+drwxr-xr-x 2 learnacademy learnacademy 4096 Oct  2 00:06 classactivity
+drwxr-xr-x 2 learnacademy learnacademy 4096 Oct  2 00:08 classactivity2
+drwxr-xr-x 2 learnacademy learnacademy 4096 Oct  2 00:17 foxnews
+-rw-r--r-- 1 learnacademy learnacademy   15 Oct  1 23:37 oladipo.txt
+-rw-r--r-- 1 learnacademy learnacademy  177 Oct  1 23:41 result.txt
+-rw-r--r-- 2 learnacademy learnacademy  177 Oct  2 00:10 result.txt2
+-rw-r--r-- 2 learnacademy learnacademy  177 Oct  2 00:10 result_hard.txt2
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls -la
+total 44
+drwxr-xr-x  6 learnacademy learnacademy 4096 Oct  2 00:53 .
+drwxr-x--- 13 learnacademy learnacademy 4096 Oct  1 23:58 ..
+drwxr-xr-x  2 learnacademy learnacademy 4096 Oct  2 00:17 arisenews
+-rw-r--r--  1 learnacademy learnacademy   38 Oct  1 23:38 ben.txt
+drwxr-xr-x  2 learnacademy learnacademy 4096 Oct  2 00:06 classactivity
+drwxr-xr-x  2 learnacademy learnacademy 4096 Oct  2 00:08 classactivity2
+drwxr-xr-x  2 learnacademy learnacademy 4096 Oct  2 00:17 foxnews
+-rw-r--r--  1 learnacademy learnacademy   15 Oct  1 23:37 oladipo.txt
+-rw-r--r--  1 learnacademy learnacademy  177 Oct  1 23:41 result.txt
+-rw-r--r--  2 learnacademy learnacademy  177 Oct  2 00:10 result.txt2
+-rw-r--r--  2 learnacademy learnacademy  177 Oct  2 00:10 result_hard.txt2
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ ls
+arisenews  ben.txt  classactivity  classactivity2  foxnews  oladipo.txt  result.txt  result.txt2  result_hard.txt2
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ cat result_hard.txt2
+#!/bin/bash
+
+# This is a sample Bash script.
+# It prints a greeting message to the console.
+
+echo "Hello, World!"
+
+# This script prints a greeting message
+echo "Hello, World!
+
+ ================================================================
+
+🔗 Soft Link (Symbolic Link)
+→ A shortcut (points to the file name/path, not the data)
+→ If the original file is deleted, the soft link breaks
+
+lrwxrwxrwx  1 learnacademy learnacademy   11 Oct  2 00:56 result_hard.txt3 -> result.txt2
+lrwxrwxrwx  1 learnacademy learnacademy   11 Oct  2 00:57 studentsresultin2025 -> result.txt2
+
+Example:
+
+# Create a file
+echo "Hello DevOps" > file2.txt  
+
+# Create a soft link
+ln -s file2.txt file2_soft.txt  
+
+# Both files point to the same content
+cat file2_soft.txt  
+# Output: Hello DevOps
+
+
+If you delete file2.txt, then file2_soft.txt becomes a broken link (error when you try to open it).
+
+
+==================
+learnacademy@DESKTOP-53E8O1K:~$ ls -ld
+drwxr-x--- 9 learnacademy learnacademy 4096 Sep 25 01:27 .
+learnacademy@DESKTOP-53E8O1K:~$ ls -l
+total 8
+drwxr-xr-x 4 learnacademy learnacademy 4096 Sep 22 12:45 learnacademy
+drwxr-xr-x 3 learnacademy learnacademy 4096 Sep 25 01:18 learnacademy1
+learnacademy@DESKTOP-53E8O1K:~$ file learnacademy
+learnacademy: directory
+learnacademy@DESKTOP-53E8O1K:~$ file learnacademy1
+learnacademy1: directory
+learnacademy@DESKTOP-53E8O1K:~$
+
+=====================================================================
+FILE SYSTEM HIERARCHY
+
+learnacademy@DESKTOP-53E8O1K:/$ ls
+Docker  boot  etc   init  lib32  libx32      media  opt   root  sbin  srv  tmp  var
+bin     dev   home  lib   lib64  lost+found  mnt    proc  run   snap  sys  usr
+=====================================================================
+Filesystem Hierarchy
+
+
+In this section, lets take a look at the filesystem hierarchy
+
+Linux uses single rooted, inverted tree like file system
+/home : It is the location that contains the home directories for all users, except the root user (root user home directory is located at /root)
+
+/opt : If you want to install any third party programs put them in the /opt filesystem.
+
+/mnt : It is the default mount point for any partition and it is empty by default. It is used to mount filesystems temporarly in the system
+
+learnacademy@DESKTOP-53E8O1K:/$ cd mnt/
+learnacademy@DESKTOP-53E8O1K:/mnt$ ls
+c  wsl  wslg
+
+/tmp : It is used to store temporary data
+
+learnacademy@DESKTOP-53E8O1K:/$ cd tmp/
+learnacademy@DESKTOP-53E8O1K:/tmp$ ls
+snap-private-tmp
+systemd-private-c5ec291fa6c742038f19b1be9a49e9d0-systemd-logind.service-U4ONqw
+systemd-private-c5ec291fa6c742038f19b1be9a49e9d0-systemd-resolved.service-2cwrs7
+systemd-private-c5ec291fa6c742038f19b1be9a49e9d0-systemd-timesyncd.service-MQqGQ9
+
+/media : All external media is mounted on /media
+
+/dev : Contains the special block and character device files
+
+/bin : The basic programs such as binaries cp, mv, mkdir are located in the /bin directory
+
+/etc : It stores most of the configuration files in Linux.
+
+/lib : The directory /lib and /lib64 is the place to look for shared libraries to be imported into your program
+
+/usr : In older systems, /usr directory is used for User Home Directories, however in the modern linux operating systems it is the location where all user land applciations in their data reside
+
+/var : It contains variable data like mails, log files
+To print all the mounted filesystems, run df (disk filesystem) command
+
+$ df -h
+
+learnacademy@DESKTOP-53E8O1K:/home$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+none            7.8G     0  7.8G   0% /usr/lib/modules/6.6.87.2-microsoft-standard-WSL2
+none            7.8G  4.0K  7.8G   1% /mnt/wsl
+drivers         931G  433G  499G  47% /usr/lib/wsl/drivers
+
+
+
+
+
+===================================================================
+=================================================================
+Sockets
+A sockets is a special file that enables the communication between two processes.
+Named Pipes
+===
+The Named Pipes is a special type of file that allows connecting one process as an input to another
+
+
+
+File Type          Identifier
+
+DIRECTORY            → d
+
+REGULAR FILE         → -
+
+CHARACTER DEVICE     → c
+
+LINK                 → l
+
+SOCKET FILE          → s
+
+PIPE                 → p
+
+BLOCK DEVICE         → b
+
+
+
+For our fox-news broadcast project all files should carry 600 permissions 
+  Determine the umask value that should be set?
+                          File      Dir:
+  Full Permissions        0666     0777      
+  Expected permissions    0600
+                          -----
+  umask value             0066
+  ---
+For our news project all files should carry 400 permissions 
+  Determine the umask value that should be set?
+                          File      Dir:
+  Full Permissions        0666     0777      
+  Expected permissions    0400
+                          -----
+  umask value             0266
+  ---
+
+  ======================================================================
+Package Management Distribution
+================================================================
+ We will take a look at the Linux Package Management tools used in different linux distribution
+
+Will start with introduction to the package management.
+Introduction to Package Managers
+For Debain/Ubuntu, it is apt/dpkg and for CentOs/Redhat, it is RPM
+
+Question : What is the difference between CentOS, RHEL and Ubuntu*?
+
+There are hundreds of Linux distributions in use today
+One of the common ways to catagorize linux distribution is by the package manager it uses.
+
+For example: Distributions such as RHEL, Fedora and CentOS. are based on RPM. Hence they are known as RPM based distribution. 
+===The Debian family including Ubuntu, Debian and Linux Mint e.t.c. make use of Debian based package managers such as the DPKG.
+===================================================================
+
+Red Hat=====================
+
+Enterprise Offering
+
+Paid version
+
+Technical Support
+
+CentOS===============
+
+Community Version
+
+Free version
+
+Community Support
+
+What is a package?========================
+A package in its simplest defination is a compressed archieve that contains all the files that are required by a particular software to run.
+For example: Lets consider an Ubuntu System, we want to install a simple editing system such as gimp which stands for  GNU Image Manipulation System. To do this, we can make use of the gimp.deb package which contains all the software binaries and files needed to for the image editor to run along with the metadata which provides the information about the software itself.
+
+Thats seems to be a quite easy process, why don't we do all the time? download a package and install it on a linux servers. Wondering the need of package managers?
+There are hundreds of linux distributions are there, these distributions runs different sets of tools and libraries, software and possibly even different linux kernels as a result of this a linux program may not run the same way from one system to another. To fix this problem packages include a manifest of dependencies or list of programs in versions that must be satified for the package software to run correctly on a given computer.
+
+Take a look at the errors in the installation while attempting to install gimp.deb on this ubuntu 18.04 system, the dependencies failed as a result the installations failed. Bare in mind that each of these dependent packages may have dependencies of their own which makes package installation management a very tedious process. This is where a Package Manager comes into save the day.
+
+dpkg -i gimp.deb
+
+A package manager is a software in a linux system that provides the consistent and automated process in installing, upgrading, configuring and removing packages from the operating system.
+
+Function of Package Managers in Linux
+
+A package manager is a tool that automates the process of:
+
+Installing software (no need to manually compile from source)
+
+Upgrading software (fetches the latest versions and dependencies)
+
+Removing software (clean uninstall with dependencies handling)
+
+Dependency management (resolves which other packages are needed)
+
+Repository management (connects to official or custom software sources)
+
+Think of it like an “App Store” for Linux that runs in the terminal.
+
+Types of Package Managers
+
+Linux distributions use different package managers, depending on the family (Debian, Red Hat, Arch, etc.)
+
+1. Debian-based (Debian, Ubuntu, Linux Mint)
+
+Low-level tool: dpkg → installs .deb packages
+
+High-level tool: apt, apt-get → installs from repositories
+
+sudo apt update
+sudo apt install nginx
+
+2. Red Hat-based (RHEL, CentOS, Fedora, Rocky Linux)
+
+Old tool: rpm → installs .rpm packages
+
+Modern tools:
+
+yum (Yellowdog Updater, Modified – older but still in use)
+
+dnf (Dandified YUM – newer, faster, default in Fedora and RHEL 8+)
+
+sudo dnf install nginx
+
+3. Arch-based (Arch Linux, Manjaro)
+
+pacman (powerful and fast, installs .pkg.tar.zst packages)
+
+sudo pacman -S nginx
+
+4. openSUSE / SUSE Linux Enterprise
+
+zypper (installs .rpm but with SUSE’s repo system)
+
+sudo zypper install nginx
+
+5. Universal Package Managers (cross-distro)
+
+Snap (by Canonical, sandboxed apps)
+
+sudo snap install vlc
+
+
+Flatpak (app distribution across distros)
+
+flatpak install flathub org.videolan.VLC
+
+
+AppImage (standalone, portable apps – no installation needed)
+
+
+====================================================================
+====================================================================
+Debian-based: dpkg & APT
+
+Working with dpkg
+
+dpkg is the low-level tool that installs .deb packages.
+
+It does not automatically resolve dependencies.
+
+Modes of Operation:
+
+Install: sudo dpkg -i package.deb
+
+Uninstall: sudo dpkg -r package_name
+
+Query: dpkg -l | grep package_name
+
+====Working with APT (Advanced Package Tool)
+
+apt / apt-get are high-level tools built on top of dpkg.
+
+They resolve dependencies automatically and pull software from repositories.
+
+Modes of Operation:
+
+Update Repo: sudo apt update
+
+Install: sudo apt install nginx
+
+Uninstall: sudo apt remove nginx
+
+Upgrade: sudo apt upgrade
+
+Query: apt show nginx
+
+Red Hat-based: RPM, YUM & DNF
+
+===Working with RPM (Red Hat Package Manager)
+
+Installs .rpm packages but does not resolve dependencies.
+
+Used for manual package handling.
+
+Modes of Operation:
+
+Install: sudo rpm -ivh package.rpm
+
+Uninstall: sudo rpm -e package_name
+
+Upgrade: sudo rpm -Uvh package.rpm
+
+Query: rpm -qa | grep package_name
+
+====Working with YUM (Yellowdog Updater, Modified)
+
+High-level tool built on top of RPM.
+
+Automatically resolves dependencies.
+
+Widely used in CentOS/RHEL 7.
+
+Modes of Operation:
+
+Install: sudo yum install nginx
+
+Uninstall: sudo yum remove nginx
+
+Upgrade: sudo yum update
+
+Query: yum info nginx
+
+====Working with DNF (Dandified YUM)
+
+The next-gen replacement for YUM (default in Fedora & RHEL 8+).
+
+Faster, better dependency resolution, cleaner output.
+
+Modes of Operation:
+
+Install: sudo dnf install nginx
+
+Uninstall: sudo dnf remove nginx
+
+Upgrade: sudo dnf upgrade
+
+Query: dnf info nginx
+
+Arch-based: pacman
+
+====Working with pacman
+
+The default package manager for Arch Linux & Manjaro.
+
+Very fast and simple, handles dependencies.
+
+Modes of Operation:
+
+Update Repo: sudo pacman -Sy
+
+Install: sudo pacman -S nginx
+
+Uninstall: sudo pacman -R nginx
+
+Upgrade: sudo pacman -Syu
+
+Query: pacman -Qi nginx
+
+SUSE-based: zypper
+
+====Working with zypper
+
+Used in openSUSE and SUSE Linux Enterprise.
+
+Similar to yum/dnf, works with .rpm packages but resolves dependencies automatically.
+
+Modes of Operation:
+
+Install: sudo zypper install nginx
+
+Uninstall: sudo zypper remove nginx
+
+Upgrade: sudo zypper update
+
+Query: zypper info nginx
+
+Universal Package Managers
+
+===== Working with Snap
+
+Sandbox applications from Canonical (Ubuntu).
+
+Runs the same package across any distro.
+
+Modes of Operation:
+
+Install: sudo snap install vlc
+
+Uninstall: sudo snap remove vlc
+
+Upgrade: sudo snap refresh vlc
+
+Query: snap info vlc
+
+===== Working with Flatpak
+
+Cross-distro package system, apps run in a sandbox.
+
+Managed via Flathub repository.
+
+Modes of Operation:
+
+Install: flatpak install flathub org.videolan.VLC
+
+Uninstall: flatpak uninstall org.videolan.VLC
+
+Upgrade: flatpak update
+
+Query: flatpak info org.videolan.VLC
+
+===Working with AppImage
+
+Standalone executable apps (no installation required).
+
+Just download, mark as executable, and run.
+
+Modes of Operation:
+
+Run: ./AppName-x86_64.AppImage
+
+(No real install/uninstall; you just delete the file).
+
+========================================================================================================================================================================================================================
+Details
+
+===============Debian Package Managers: DPKG and APT
+
+
+In this section, we will look at Debian package managers for distributions like Ubuntu, Debian, and PureOS.
+
+DPKG Utility
+
+DPKG stands for Debian Package Manager
+
+It is a low-level package manager for handling .deb packages
+
+Works directly with package files
+
+Does not handle dependencies automatically (like RPM)
+
+Working with DPKG
+
+The package extension is .deb.
+
+Installing
+
+sudo dpkg -i package.deb
+
+
+Uninstalling
+
+sudo dpkg -r package_name
+
+
+Upgrade
+
+sudo dpkg -i new_package.deb
+
+
+List installed packages
+
+dpkg -l | grep package_name
+
+
+Check status of a package
+
+dpkg -s package_name
+
+
+Verify installation (files installed by package)
+
+dpkg -L package_name
+
+
+=========================Problem: Installing with dpkg may fail due to missing dependencies.
+
+APT and APT-GET
+
+Since dpkg doesn’t resolve dependencies, we use APT or APT-GET.
+
+Both are high-level package managers that rely on repositories.
+
+APT = Advanced Package Tool (more user-friendly).
+
+APT-GET = older tool, still widely used, but APT is preferred for modern systems.
+
+=================Repository sources are defined in:
+
+/etc/apt/sources.list
+
+Working with APT
+
+Update repository index
+
+sudo apt update
+
+
+Upgrade installed packages
+
+sudo apt upgrade
+
+
+Edit repository sources
+
+sudo apt edit-sources
+
+
+Install a package
+
+sudo apt install telnet
+
+
+Remove a package
+
+sudo apt remove telnet
+
+
+Search for a package
+
+sudo apt search telnet
+
+
+List installed packages
+
+sudo apt list --installed | grep telnet
+
+
+======================Analogy:
+
+dpkg = installing an .exe manually on Windows (dependencies may break).
+
+apt = using Windows Update / App Store that resolves everything automatically.
+
+Red Hat Package Managers: RPM, YUM, DNF
+
+🎥 Take me to the Video Tutorial
+
+In this section, we will look at Red Hat-based package managers for RHEL, CentOS, Fedora, and Rocky Linux.
+
+RPM Utility
+
+RPM = Red Hat Package Manager
+
+Low-level package manager (similar to dpkg)
+
+Installs .rpm packages
+
+Does not handle dependencies automatically
+
+Working with RPM
+
+Installing
+
+sudo rpm -ivh package.rpm
+
+
+Uninstalling
+
+sudo rpm -e package_name
+
+
+Upgrade
+
+sudo rpm -Uvh package.rpm
+
+
+Query installed packages
+
+rpm -qa | grep package_name
+
+
+Verify files installed by package
+
+rpm -ql package_name
+
+
+Limitation: Dependency errors are common → “Package requires XYZ, but it’s missing.”
+
+YUM (Yellowdog Updater, Modified)
+
+Built on top of RPM
+
+Resolves dependencies automatically
+
+Works with online repositories and local .rpm files
+
+Widely used in CentOS 6/7 and RHEL 6/7
+
+Working with YUM
+
+Install a package
+
+sudo apt install nginx
+
+
+Uninstall a package
+
+sudo apt remove nginx
+
+
+Upgrade all packages
+
+sudo yum update
+
+
+Query a package
+
+yum info nginx
+
+DNF (Dandified YUM)
+
+The modern replacement for YUM (default in Fedora, RHEL 8+, CentOS 8, Rocky Linux).
+
+Faster, better dependency handling, and more stable.
+
+Working with DNF
+
+Install a package
+
+sudo dnf install nginx
+
+
+Uninstall a package
+
+sudo dnf remove nginx
+
+
+Upgrade all packages
+
+sudo dnf upgrade
+
+
+Query a package
+
+dnf info nginx
+
+Arch Linux Package Manager: pacman
+
+===============================================================
+
+pacman = Package Manager for Arch Linux & Manjaro
+
+Handles .pkg.tar.zst packages
+
+Lightweight and fast
+
+Working with pacman
+
+Update repo index
+
+sudo pacman -Sy
+
+
+Upgrade all packages
+
+sudo pacman -Syu
+
+
+Install a package
+
+sudo pacman -S nginx
+
+
+Uninstall a package
+
+sudo pacman -R nginx
+
+
+Query a package
+
+pacman -Qi nginx
+
+SUSE Package Manager: zypper
+
+====================================================
+
+Default package manager for openSUSE and SUSE Linux Enterprise
+
+Works with .rpm packages but resolves dependencies like YUM/DNF
+
+Working with zypper
+
+Install a package
+
+sudo zypper install nginx
+
+
+Uninstall a package
+
+sudo zypper remove nginx
+
+
+Upgrade all packages
+
+sudo zypper update
+
+
+Query a package
+
+zypper info nginx
+
+Universal Package Managers
+
+These tools work across multiple Linux distributions.
+
+Snap (by Canonical)
+
+Runs sandboxed apps with dependencies bundled inside.
+
+Works on most Linux distros.
+
+Examples:
+
+Install: sudo snap install vlc
+
+Uninstall: sudo snap remove vlc
+
+Update: sudo snap refresh vlc
+
+Info: snap info vlc
+
+Flatpak
+
+Works cross-distro via Flathub repository.
+
+Sandboxed like Snap but more community-driven.
+
+Examples:
+
+Install: flatpak install flathub org.videolan.VLC
+
+Uninstall: flatpak uninstall org.videolan.VLC
+
+Update: flatpak update
+
+Info: flatpak info org.videolan.VLC
+
+AppImage
+
+Portable apps, no installation needed.
+
+Just download → make executable → run.
+
+Examples:
+
+chmod +x AppName-x86_64.AppImage
+./AppName-x86_64.AppImage
+
+
+Final Summary:
+
+dpkg / rpm = low-level (no dependency resolution).
+
+apt / yum / dnf / pacman / zypper = high-level (resolve dependencies).
+
+snap / flatpak / AppImage = universal, cross-distro solutions.
+
+
+======================================================
+======================================================
+======================================================
+======================================================
+
+For our cbs project all files should carry 0777 permissions.
+  Determine the umask value that should be set? 
+Directories navigation = executable permissions is required   
+
+File permissions/security:
+  How are files permissions modified in Linux?
+     1. By changing umask value =  
+     2. by running the chmod command 
+  chmod: we can add or remove permissions rights & priviledges
+    chmod permissions fileName 
+    chmod 600 app.py 
+        Owner  = 6 = rw- 
+        group  = 0 = ---
+        others = 0 = ---
+        rwx rwx r-x.
+        Owner  = 7 = rwx       7- rwx
+        group  = 7 = rwx       0- ---
+        others = 5 = r-x       0- --- 
+  
+  chown: changing the ownership of files/directories
+    Only the root user can change ownership of files 
+       /bin or /sbin 
+  - rw- --- ---. 1 ec2-user ec2-user 0 Apr 23 09:32 app.py
+  d rwx --- ---. 2 ec2-user ec2-user 6 Apr 23 09:32 test
+    useradd or 
+    adduser emmanuel 
+    sudo chown emmanuel app.py
+    sudo -u emmanuel chown emmanuel app.py
+    chown: changing ownership of 'app.py': Operation not permitted
+    sudo -u root chown emmanuel app.py
+    sudo chgrp emmanuel app.py
+    sudo chown emmanuel:emmanuel learnacademy
+
+  grep: Extract specific patterns from files  
+         /etc/passwd file  with over 1000 user's details 
+      Extract oladipo's details from the /etc/passwd file 
+      ubuntu@ip-172-31-25-148:/$ grep oladipo /etc/passwd
+oladipo:x:1001:1001::/home/oladipo:/bin/sh
+oladipo2:x:1003:1003:oladipo oladipo,2,070949487474,,single:/home/oladipo2:/bin/bash
+ubuntu@ip-172-31-25-148:/$
+ 
+
+      cat /etc/passwd = output  
+      grep emmanuel
+
+  pipe: |
+     cat /etc/passwd | grep emmanuel
+
+
+====== IQ: explain the grep and the pipe commands 
+
+  grep command
+
+grep means Global Regular Expression Print.
+
+It is used in Linux/Unix to search for specific text or patterns inside files or command outputs.
+
+By default, it prints the lines that match the search.
+
+Examples:
+
+grep "error" logfile.txt
+
+
+ Finds all lines in logfile.txt containing the word error.
+
+grep -i "warning" logfile.txt
+
+
+-i makes the search case insensitive (matches Warning, WARNING, etc.).
+
+grep -r "TODO" /project
+
+ -r searches recursively through all files in /project for "TODO".
+
+2. The pipe (|) command
+
+The pipe (|) is used to connect two commands.
+
+It takes the output of the command on the left and sends it as the input to the command on the right.
+
+Examples:
+
+ls -l | grep ".txt"
+
+
+ls -l lists files → grep ".txt" filters only those ending with .txt.
+
+ps aux | grep "nginx"
+===== ubuntu@ip-172-31-25-148:/$ ps aux | grep nginx
+ubuntu      2248  0.0  0.2   7076  2204 pts/0    S+   01:21   0:00 grep --color=auto nginx
+
+
+
+Shows only processes related to nginx.
+
+cat logfile.txt | grep "error"
+
+
+🔹 Prints only the lines with error from the file. (Though here you could just use grep "error" logfile.txt directly.)
+
+Using grep + pipe together
+
+learnacademy@DESKTOP-53E8O1K:~/learnacademy2$ cat result_hard.txt2 | grep console
+# It prints a greeting message to the console.
+
+These two are often combined to filter information quickly.
+
+For example:
+
+dmesg | grep "usb"
+
+
+Shows only USB-related system messages.
+
+netstat -tulnp | grep "80"
+
+
+ Displays only the processes listening on port 80.
+
+In short:
+
+grep = search/filter text.
+
+| (pipe) = connect commands, send output from one into another.
+
+ 
+grep emmanuel list 
+grep -i emmanuel list 
+  where -i = means ignore casing 
+  Linux is case sensitive = 
+
+  cat list | grep -i emmanuel | sort  
+
+  WaterSource=============home 
+  grep emmanuel 
+  sort 
+
+[ec2-user@demo news]$ grep emmanuel list
+
+  sort
+  tr
+  find 
+    find /home/ec2-user -name list.txt
+    find ~ -name list.txt = user's homeDir 
+    find . -name hired  = pwd 
+    find /tmp -name list.txt
+    sudo find / -name test
+    find . -empty 
+        . = pwd 
+        ~ = user's homeDirectory
+  sed
+  cut 
+  awk 
+  date 
+  learnacademy@DESKTOP-53E8O1K:~$ date
+Thu Oct  2 02:26:22 BST 2025
+  timedatectl list-timezones
+  sudo timedatectl set-timezone "America/New_York"  
+
+user management commands:
+ 3 category of users in Linux:
+   1. root user
+         superUser or admin (sudo) 
+         can run all commands in the server  
+  2. Normal users 
+     Users created by the admin/root
+     can only run binary [/bin] files by Default   
+  3. system users 
+         Created with softwares installations   
+
+ Groups / Users: 10 teams with 200 Team members 
+ app-Server 
+ db-Server 
+ web-Server
+    Directors
+      legah
+    Managers/
+      emma 
+      gloria
+    Engineers 
+      learnacademy 
+      acho 
+      alu 
+    Developers  
+       babs   
+
+ adduser --- create a user in Linux 
+ useradd --- create a user in Linux
+ groupadd -- create a group in Linux 
+ groupdel -- delete a group in Linux
+    groupadd managers
+    sudo groupadd managers
+    sudo -u root groupadd managers
+
+    ubuntu@ip-172-31-25-148:/$ sudo groupadd IT
+ubuntu@ip-172-31-25-148:/$ sudo groupadd managers
+ubuntu@ip-172-31-25-148:/$ sudo groupadd directors
+ubuntu@ip-172-31-25-148:/$ sudo groupadd admins
+ubuntu@ip-172-31-25-148:/$ sudo groupadd hr
+
+      cat /etc/group 
+[ec2-user@demo ~]$ sudo groupadd managers
+[ec2-user@demo ~]$ sudo groupadd class28
+[ec2-user@demo ~]$ sudo groupadd developers
+
+ sudo useradd userName
+ sudo -u root useradd paul 
+   This create the user and her homeDir 
+    emmanuel     = homeDir = /home/emmanuel  = ~ 
+    learnacademy = homeDir = /home/learnacademy 
+    ec2-user = homeDir = /home/ec2-user
+   ls /home  
+
+Assigning password to users:
+  passwd userName 
+  sudo -u root passwd learnacademy
+  sudo passwd learnacademy 
+     class2
+
+ /etc/sudoers = 
+  File use to assign sudo, escalated or admin
+   rights/priviledges to users 
+ 
+  sudo vi /etc/sudoers  
+#includedir /etc/sudoers.d
+ec2-user        ALL=(ALL)       NOPASSWD: ALL
+learnacademy        ALL=(ALL)       NOPASSWD: ALL
+emmanuel           ALL=(ALL)       NOPASSWD: ALL
+
+ Files to consider:
+   /etc/passwd  = users details 
+       cat /etc/passwd
+   /etc/groups  = group details 
+       cat /etc/groups
+   /etc/shadow  = user's password 
+       cat /etc/shadow
+
+
+Project:
+Create the following groups 
+    Engineers, 
+    Testers,
+    managers,
+    reviewers
+Create the following users and assign passwords:
+    douglas
+    leslie
+    daniel
+    James
+
+Assign douglas to the managers group and assign
+james to the Engineers 
+
+How to add users to groups in Linux?
+  chage 
+  useradd 
+  userdel 
+  groupadd
+  groupdel  
+  usermod  = 
+    T
+    his modify a user's account in Linux e.g 
+    Add a user to a secondary group
+       usermod -G groupName userName
+  sudo usermod -G managers learnacademy 
+  Coomand to list/display user's group.
+       id userName      
+
+[learnacademy@demo ~]$ id learnacademy
+   uid=1002(learnacademy) 
+   gid=1005(learnacademy) groups=1005(learnacademy)
+
+[learnacademy@demo ~]$ sudo usermod -G managers learnacademy
+[learnacademy@demo ~]$
+[learnacademy@demo ~]$ id learnacademy
+ uid=1002(learnacademy) gid=1005(learnacademy)
+ groups=1005(learnacademy),1002(managers)
+
+  chage
+  lid 
+[learnacademy@demo ~]$ sudo chage learnacademy
+Changing the aging information for learnacademy
+Enter the new value, or press ENTER for the default
+        Minimum Password Age [0]:
+        Maximum Password Age [99999]: 7
+        Last Password Change (YYYY-MM-DD) [2022-04-24]:
+        Password Expiration Warning [7]: 3
+        Password Inactive [-1]: 90
+        Account Expiration Date (YYYY-MM-DD) [-1]: 180
+
+EC2 SERVER: 
+    root user  elevated priviledges  
+    ec2-user elevated priviledges 
+      How can a user [ec2-user] access the server?
+       userName: ec2-user 
+       ssh-private-key = class2key.pem [001244fafsd] 
+       password: class28 
+       server's address: public-ip [52.87.248.166]
+ using Password:
+    ssh ec2-user@52.87.248.166
+ using ssh-private-key:
+    ssh -i class2key.pem ec2-user@52.87.248.166
+    ssh -i "C27.pem" ec2-user@54.85.146.233
+Passwordless authentication --- :
+learnacademy 
+emmanuel  
+douglas 
+
+How users can access ec2 servers  with password ?:
+1. assign password to the user 
+2. Configure password authentication 
+   - sudo vi /etc/ssh/sshd_config
+       allow password authentication 
+         PasswordAuthentication: yes [change from no to yes]
+
+  - restart the ssh service 
+       sudo systemctl restart sshd     
+
+3.  ssh userName@hostAddress
+    ssh emmanuel@52.87.248.166
+       password = class28 
+
+Files: 
+  /etc/ssh/sshd_config   
+    sudo vi /etc/ssh/sshd_config
+  /etc/sudoers 
+    sudo vi  /etc/sudoers
+
+Granting sudo access to users:
+  sudo vi  /etc/sudoers or 
+  echo "userName ALL=(ALL) NOPASSWD:ALL" |  tee /etc/sudoers.d/userName
+ add ansible user in the sudoers file:
+  sudo echo "ansible  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/ansible
+ add emmanuel's user in the sudoers file:
+  sudo echo "emmanuel  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/emmanuel 
+Allow users to login using password:
+  sudo sed -i "/^[^#]*PasswordAuthentication[[:space:]]no/c\PasswordAuthentication yes" /etc/ssh/sshd_config
+  sudo service sshd restart  
+  sudo systemctl restart sshd 
+
+
+ ssh emmanuel@54.85.146.233  
+
+System Resources Commands:
+who 
+w 
+whoami 
+users 
+whereis 
+date 
+df 
+du 
+hostname
+
+System Resources Commands:
+who : Displays the current users working on the system.
+w : Show who is logged on and what they are doing
+users : Displays a compact list of the users currently logged
+        on the  system.
+whoami : Display the current user info who gave this command
+
+whereis: locate binary file location in the server
+         whereis ls 
+         whereis whereis
+         whereis pwd 
+         whereis touch 
+date : : Print or set the system date and time
+  date 
+  date -s "24 JAN 2022 20:04:40"
+  date -s "28 APR 2022 20:00:00"
+
+How to define/set set-timezones: 
+  timedatectl list-timezones
+  sudo timedatectl set-timezone <your_time_zone>
+  sudo timedatectl set-timezone Africa/Accra
+  sudo timedatectl set-timezone America/New_York
+
+application server:
+  the system is very Important for automation 
+    scheduling an application deployment for 11:55PM EST/EDT 
+
+df - Report file system disk space usage
+     RAM = 8GB, Hard drive space = 500GB SSD 
+server/system/computer/laptop = 
+   create files, directories folders 
+   downloads movies, videos, study materials 
+
+df - 
+$ df -h
+Filesystem            Size  Used Avail Use% Mounted on
+C:/Program Files/Git  953G  922G   31G  97% /
+
+df : Report file system disk space usage
+  df 
+  df -h  ; 
+     where -h = human readable 
+
+ubuntu@ip-172-31-25-148:/$ df -h
+Filesystem       Size  Used Avail Use% Mounted on
+/dev/root        6.8G  2.0G  4.8G  30% /
+tmpfs            458M     0  458M   0% /dev/shm
+tmpfs            183M  888K  182M   1% /run
+tmpfs            5.0M     0  5.0M   0% /run/lock
+efivarfs         128K  3.6K  120K   3% /sys/firmware/efi/efivars
+/dev/nvme0n1p16  881M   87M  733M  11% /boot
+/dev/nvme0n1p15  105M  6.2M   99M   6% /boot/efi
+tmpfs             92M   12K   92M   1% /run/user/1000
+
+
+du : Estimate file space usage.
+      tesla 
+      dev  
+      qa 
+      prod 
+      videos --- movie1 
+                 movie2
+                 movie3
+
+du -h 
+
+RAM = 8GB,
+  RANDOM ACCESS MEMORY 
+  IT DETERMINES THE SPEED OF YOUR System/SERVER 
+    memory 
+
+free -h 
+feer -m  = megabytes 
+
+ubuntu@ip-172-31-25-148:/$ free -m
+               total        used        free      shared  buff/cache   available
+Mem:             914         386         132           2         599         528
+Swap:              0           0           0
+ubuntu@ip-172-31-25-148:/$ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           914Mi       386Mi       132Mi       2.7Mi       599Mi       527Mi
+Swap:             0B          0B          0B
+ubuntu@ip-172-31-25-148:/$
+
+
+Swap: 200% of memory and it is extracted from the hard disk 
+
+df -h:
+   /dev/xvda1      9.0G  1.7G  7.4G  18% /
+
+Mem:            10G         9.8G         0.2G
+  applications will either not run or lacks performance 
+Mem:            10G         9.8G         0.2G
+swap:           20G          0 
+  swap memory equals 200% of memory 
+
+  RAM = Random access memory 
+  running applications --> memory optimised 
+
+lscpu 
+lsmem 
+
+How can a System/server be identified?
+ webServer 
+ remoteHost details:
+    public or private ip address: 54.85.146.233
+       ssh emmanuel@54.85.146.233
+    hostName: webserver 
+       ssh emmanuel@webserver
+    dnsName: www.rbc.com
+       ssh emmanuel@ww.rbc.com      
+hostname : Show or set the system host name.
+   hostname  = displays the system's hostname 
+   hostname dbServer  = this will assign the system hostname 
+                        as dbServer 
+   hostname dbServer = only the root user or users with 
+                       admin/sudo access can assign hostname 
+   sudo hostname dbServer
+        hostname webserver 
+
+   ping demo
+
+   ping google.com      = dnsName 
+   ping 172.253.122.113 = public ip address
+ubuntu@ip-172-31-25-148:/$ ping google.com
+PING google.com (172.253.122.138) 56(84) bytes of data.
+64 bytes from bh-in-f138.1e100.net (172.253.122.138): icmp_seq=1 ttl=105 time=1.85 ms
+64 bytes from bh-in-f138.1e100.net (172.253.122.138): icmp_seq=2 ttl=105 time=1.87 ms
+64 bytes from bh-in-f138.1e100.net (172.253.122.138): icmp_seq=3 ttl=105 time=1.88 ms
+64 bytes from bh-in-f138.1e100.net (172.253.122.138): icmp_seq=4 ttl=105 time=1.85 ms
+64 bytes from bh-in-f138.1e100.net (172.253.122.138): icmp_seq=5 ttl=105 time=1.85 ms
+64 bytes from bh-in-f138.1e100.net (172.253.122.138): icmp_seq=6 ttl=105 time=1.85 ms
+64 bytes from bh-in-f138.1e100.net (172.253.122.138): icmp_seq=7 ttl=105 time=1.85 ms
+64 bytes from bh-in-f138.1e100.net (172.253.122.138): icmp_seq=8 ttl=105 time=1.86 ms
+64 bytes from bh-in-f138.1e100.net (172.253.122.138): icmp_seq=9 ttl=105 time=1.84 ms
+^C
+--- google.com ping statistics ---
+9 packets transmitted, 9 received, 0% packet loss, time 8014ms
+rtt min/avg/max/mdev = 1.844/1.855/1.880/0.011 ms
+ubuntu@ip-172-31-25-148:/$ ping jumia.com
+PING jumia.com (104.16.196.130) 56(84) bytes of data.
+64 bytes from 104.16.196.130: icmp_seq=1 ttl=57 time=1.30 ms
+64 bytes from 104.16.196.130: icmp_seq=2 ttl=57 time=1.29 ms
+64 bytes from 104.16.196.130: icmp_seq=3 ttl=57 time=1.26 ms
+64 bytes from 104.16.196.130: icmp_seq=4 ttl=57 time=1.28 ms
+64 bytes from 104.16.196.130: icmp_seq=5 ttl=57 time=1.28 ms
+64 bytes from 104.16.196.130: icmp_seq=6 ttl=57 time=1.32 ms
+64 bytes from 104.16.196.130: icmp_seq=7 ttl=57 time=1.29 ms
+64 bytes from 104.16.196.130: icmp_seq=8 ttl=57 time=1.27 ms
+64 bytes from 104.16.196.130: icmp_seq=9 ttl=57 time=1.29 ms
+64 bytes from 104.16.196.130: icmp_seq=10 ttl=57 time=1.36 ms
+^C
+--- jumia.com ping statistics ---
+10 packets transmitted, 10 received, 0% packet loss, time 9012ms
+rtt min/avg/max/mdev = 1.258/1.293/1.364/0.028 ms
+ubuntu@ip-172-31-25-148:/$
+
+
+hostname:
+  hostname dbServer
+  hostname  
+ifconfig  = display the IP addresses of a server/system 
+
+===================================================
+    172.31.19.167
+    172.31.19.167
+ip a
+ubuntu@ip-172-31-25-148:/$ ifconfig
+ens5: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 172.31.25.148  netmask 255.255.240.0  broadcast 172.31.31.255
+        inet6 fe80::8ff:e6ff:fe25:7629  prefixlen 64  scopeid 0x20<link>
+        ether 0a:ff:e6:25:76:29  txqueuelen 1000  (Ethernet)
+        RX packets 51027  bytes 44020968 (44.0 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 21863  bytes 3464411 (3.4 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 252  bytes 28074 (28.0 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 252  bytes 28074 (28.0 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+        ubuntu@ip-172-31-25-148:/$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: ens5: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9001 qdisc mq state UP group default qlen 1000
+    link/ether 0a:ff:e6:25:76:29 brd ff:ff:ff:ff:ff:ff
+    altname enp0s5
+    inet 172.31.25.148/20 metric 100 brd 172.31.31.255 scope global dynamic ens5
+       valid_lft 2767sec preferred_lft 2767sec
+    inet6 fe80::8ff:e6ff:fe25:7629/64 scope link
+       valid_lft forever preferred_lft forever
+
+
+ubuntu@ip-172-31-25-148:/$
+
+
+[ec2-user@dbserver ~]$ hostname -i
+    fe80::832:a4ff:fe8a:91d1%eth0  = ipv6
+                                   128 bites 
+    172.31.19.167 = ipv4  
+     8 + 8  8  8  = 32 bites 
+
+  boa = 500,000 servers [1,000,000 ip address] 
+
+hostname -i 
+ubuntu@ip-172-31-25-148:/$ hostname -i
+172.31.25.148
+
+lsblk 
+cat 
+Command helpers:
+  man : Display the on-line manual pages.
+    man ls 
+       ls - list directory contents
+    man pwd 
+      pwd - print name of current/working directory
+  info:
+    info ls 
+  help:
+    ls --help 
+  whatis:
+  ubuntu@ip-172-31-25-148:/$ whatis lsblk
+lsblk (8)            - list block devices
+
+
+ubuntu@ip-172-31-25-148:/$ whatis --help
+Usage: whatis [OPTION...] KEYWORD...
+
+  -d, --debug                emit debugging messages
+  -v, --verbose              print verbose warning messages
+  -r, --regex                interpret each keyword as a regex
+  -w, --wildcard             the keyword(s) contain wildcards
+  -l, --long                 do not trim output to terminal width
+  -C, --config-file=FILE     use this user configuration file
+  -L, --locale=LOCALE        define the locale for this search
+  -m, --systems=SYSTEM       use manual pages from other systems
+  -M, --manpath=PATH         set search path for manual pages to PATH
+  -s, --sections=LIST, --section=LIST
+                             search only these sections (colon-separated)
+  -?, --help                 give this help list
+      --usage                give a short usage message
+  -V, --version              print program version
+
+   whatis ls  
+    The whatis command displays a summary line
+    from the  man page for the specified 
+    command in Linux.
+    whatis ls 
+
+service sshd status  [Redhat 5/6]  
+service serviceName status  [Redhat 5/6] 
+
+systemctl status sshd [redhat 7/8]
+service sshd status [redhat 7/8]
+
+systemctl status|stop|start|restart|enable|disable sshd 
+systemctl status|stop|start|restart|enable|disable httpd
+
+learnacademy@DESKTOP-53E8O1K:/$ systemctl status docker
+● docker.service - Docker Application Container Engine
+     Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2025-10-01 16:04:47 BST; 10h ago
+TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 283 (dockerd)
+      Tasks: 14
+     Memory: 72.1M
+        CPU: 8.588s
+
+systemctl list-unit-files
+
+uptime: Tells how long the system has been running.
+    uptime 
+        5 years 
+        366 days 
+        15 days 
+  To optimised uptime ---
+last: show listing of last logged in users.
+Yum: 
+
+Troubleshooting in Linux #Bonus class
+===========================
+==============================
+==============================
+
+Concrete commands you can run (with short example outputs and what they mean), and several real-world troubleshooting flows (web server down, no disk space, high CPU, network/DNS problems, boot failures). Use sudo where needed.
+
+1) General troubleshooting approach (quick checklist)
+
+Reproduce the problem (or collect exact error messages & timestamps).
+
+Check the obvious: system health, disk, memory, services.
+
+Read logs (systemd/journals and app logs).
+
+Narrow scope: local or network; single host or cluster; config change or code change.
+
+Collect diagnostics (commands below) and, if necessary, create a tarball to share with others.
+
+Fix a simple root cause, validate, then harden to avoid recurrence.
+
+2) Useful "health check" commands (cheat-sheet)
+# System & uptime
+uname -a
+uptime
+who -r              # runlevel / last reboot
+
+# Disk and Inodes
+df -h               # disk usage human
+df -i               # inodes
+du -sh /var/log/*   # disk usage by directory
+
+# Block devices
+lsblk
+blkid
+fdisk -l
+
+# Memory & CPU
+free -h
+top                 # or htop
+ps aux --sort=-%mem | head -n 10
+
+# Processes & files
+ps aux | grep myapp
+lsof -i :80         # open files by port
+ss -tulpn           # sockets listening
+
+# Services & logs (systemd)
+systemctl status nginx.service
+systemctl --failed
+journalctl -u nginx.service --since "1 hour ago"
+journalctl -b --since "2025-09-24 08:00"   # change date/time as useful
+
+# Network
+ip a
+ip route
+ping 8.8.8.8
+ip neigh
+traceroute 1.1.1.1
+dig example.com
+curl -v http://localhost:80
+
+# Filesystem check (careful)
+mount
+cat /etc/fstab
+
+3) Example troubleshooting workflows
+A — Website (nginx) down / 502 or 504 errors
+
+Check service and journal:
+
+sudo systemctl status nginx
+# Example output: ● nginx.service - A high performance web server ... Active: failed (Result: exit-code)
+sudo journalctl -u nginx.service -n 200 --no-pager
+
+
+If it’s a reverse proxy to an app, check upstream app (e.g., gunicorn, php-fpm):
+
+sudo systemctl status php7.4-fpm
+sudo journalctl -u php7.4-fpm -n 200
+# Or check a socket: ss -ltnp | grep php
+
+
+Test connectivity between proxy and backend:
+
+curl -v http://127.0.0.1:9000   # backend address/port
+
+
+Inspect access/error logs:
+
+sudo tail -n 200 /var/log/nginx/error.log
+sudo tail -n 200 /var/log/nginx/access.log
+
+
+If logs show permission denied writing to cache or temp directories, fix ownership:
+
+# Example for PHP/Laravel apps:
+sudo chown -R www-data:www-data /var/www/myapp/storage /var/www/myapp/bootstrap/cache
+sudo chmod -R 775 /var/www/myapp/storage /var/www/myapp/bootstrap/cache
+
+
+If config changed, test nginx config:
+
+sudo nginx -t
+# then
+sudo systemctl reload nginx
+
+B — “No space left on device” (common)
+
+Check usage:
+
+df -h
+df -i     # check inode exhaustion
+
+
+Find large directories:
+
+sudo du -sh /* 2>/dev/null | sort -h | tail -n 20
+sudo du -sh /var/* | sort -h | tail -n 20
+
+
+Find biggest files:
+
+sudo find / -xdev -type f -printf '%s %p\n' | sort -nr | head -n 20
+# or
+sudo du -ah /var | sort -rh | head -n 30
+
+
+Rotate and vacuum logs:
+
+# journalctl (systemd logs)
+sudo journalctl --disk-usage
+sudo journalctl --vacuum-size=200M   # keep journal under 200MB
+# Force logrotate (if configured)
+sudo logrotate -f /etc/logrotate.conf
+
+
+Docker disk bloat:
+
+docker system df
+docker system prune -af
+docker volume prune -f
+
+
+If root cause is too many old kernels (Debian/Ubuntu):
+
+sudo dpkg --list 'linux-image*' | grep ^ii
+sudo apt --purge autoremove
+
+
+Caution: don't rm -rf / or delete random files — remove only known large files or rotate logs and clean package caches (apt clean, dnf clean all).
+
+C — High CPU / Memory / System slow
+
+Top offenders:
+
+top -o %CPU    # sort by CPU
+top -o %MEM    # sort by memory
+ps aux --sort=-%mem | head
+
+
+Inspect child processes and threads:
+
+pstree -p <PID>
+ps -o pid,ppid,cmd,%mem,%cpu -p <PID> --forest
+
+
+IO wait / disk causing high load:
+
+iostat -x 1 5      # from sysstat package
+# or
+vmstat 1 5
+
+
+If a process is stuck in I/O, find open files:
+
+sudo lsof -p <PID>
+sudo iotop -o         # shows processes doing I/O
+
+
+If a runaway process, (gentle -> harder):
+
+sudo kill <PID>
+sudo kill -9 <PID>   # last resort
+# or lower its priority
+sudo renice +10 -p <PID>
+
+
+If memory leak suspected, use pmap -x <PID> or smem and check for recent code or config changes.
+
+D — Network/DNS problems (host can’t reach remote services)
+
+Basic checks:
+
+ip a
+ip route show
+ping 8.8.8.8          # tests IP-level connectivity
+ping example.com      # tests DNS + connectivity
+
+
+DNS specifics:
+
+systemd-resolve --status    # or resolvectl status
+cat /etc/resolv.conf
+dig +short example.com @8.8.8.8
+
+
+Trace path:
+
+traceroute 1.1.1.1
+mtr example.com             # interactive
+
+
+Check firewall / iptables / nft:
+
+sudo iptables -L -n -v
+sudo nft list ruleset
+sudo ss -tulpn
+
+
+Interface link / driver issues:
+
+sudo ethtool eth0
+ip link set eth0 down
+ip link set eth0 up
+
+
+Example: DNS lookup failing only inside one container — check container’s /etc/resolv.conf and DNS settings in Docker/Podman/Kubernetes.
+
+E — SSH problems (can't login)
+
+Increase verbosity on client:
+
+ssh -vvv user@host
+
+
+Inspect server side:
+
+sudo systemctl status sshd
+sudo tail -n 200 /var/log/auth.log      # Debian/Ubuntu
+sudo tail -n 200 /var/log/secure        # RHEL/CentOS
+
+
+Common problems & fixes:
+
+Permission denied (publickey) → check ~/.ssh/authorized_keys ownership (must be owned by user, not writable by group/others).
+
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+chown -R user:user ~/.ssh
+
+
+sshd_config changes: ensure PermitRootLogin and PasswordAuthentication as required and restart sshd.
+
+sudo sshd -t   # test config
+sudo systemctl restart sshd
+
+F — Broken packages / package manager stuck
+
+Debian/Ubuntu:
+
+sudo apt update
+sudo apt install -f
+sudo dpkg --configure -a
+
+
+RHEL/CentOS:
+
+sudo yum clean all
+sudo yum update
+
+
+If a package upgrade locks or breaks dependencies, check logs and consider apt-mark hold packagename until you resolve.
+
+4) Filesystem repair & boot problems
+System won’t boot / kernel panic
+
+Reboot; at GRUB, choose an older kernel. If boots, new kernel likely culprit.
+
+From a rescue/live CD:
+
+# mount root, chroot, rebuild initramfs and reinstall grub
+sudo mount /dev/sda2 /mnt
+sudo mount --bind /dev /mnt/dev
+sudo mount --bind /proc /mnt/proc
+sudo mount --bind /sys /mnt/sys
+sudo chroot /mnt
+update-initramfs -u
+update-grub
+grub-install /dev/sda
+exit
+
+
+Run fsck on unmounted partitions (dangerous on mounted partitions):
+
+sudo umount /dev/sda1
+sudo fsck -y /dev/sda1
+
+
+Check journalctl -b -1 (previous boot) for kernel oops/panic messages.
+
+5) LVM / disk resizing (example)
+
+View LVM:
+
+sudo pvs
+sudo vgs
+sudo lvs
+
+
+Extend LV and filesystem (ext4 example):
+
+sudo lvextend -L +10G /dev/vgdata/lvroot
+sudo resize2fs /dev/vgdata/lvroot
+# xfs
+sudo xfs_growfs /mount/point
+
+6) Hardware / disk health
+
+Check SMART data (install smartmontools):
+
+sudo smartctl -a /dev/sda
+# example: look for Reallocated_Sector_Ct, Current_Pending_Sector
+
+
+dmesg for drive errors:
+
+dmesg | egrep -i 'sda|ata|fail|error'
+
+
+If SMART shows reallocated sectors or pending sectors → plan replacement & restore from backups.
+
+7) Advanced debugging tools
+
+strace -f -o /tmp/strace.log -e trace=file,network mycommand — see system calls and where it fails.
+
+tcpdump -i eth0 -w /tmp/capture.pcap port 80 — collect packets to analyze in Wireshark.
+
+gdb for native app crashes, coredumpctl to list core dumps from systemd-managed apps.
+
+8) SELinux / AppArmor blocking things
+
+SELinux:
+
+getenforce
+sudo ausearch -m avc -ts today
+sudo sealert -a /var/log/audit/audit.log   # if sealert installed
+# temporary workaround (not permanent): 
+sudo setenforce 0
+
+
+AppArmor:
+
+sudo aa-status
+sudo dmesg | grep apparmor
+
+
+If SELinux denying httpd socket, set boolean:
+
+sudo getsebool -a | grep httpd
+sudo setsebool -P httpd_can_network_connect on
+
+9) Cron & scheduled tasks
+
+List crontabs:
+
+crontab -l
+sudo crontab -l -u someuser
+
+
+Check cron logs:
+
+sudo tail -n 200 /var/log/cron     # RHEL
+sudo grep CRON /var/log/syslog     # Debian/Ubuntu
+
+
+Common issue: environment variables (PATH) in cron are limited — supply full paths or set PATH in crontab.
+
+10) When to escalate / preserve evidence
+
+If you suspect hardware failure, take a disk image or snapshot before further destructive actions.
+
+If you suspect intrusion, isolate host from network and preserve logs (tar /var/log, journalctl output, ps aux, netstat/ss -tulpn).
+
+For major production incidents, create a timeline, take screenshots, and collect diagnostics into a tarball.
+
+11) Example diagnostic collection script
+
+Save and run this to gather basics:
+
+#!/bin/bash
+OUT="/tmp/diag-$(hostname)-$(date +%F-%T)"
+mkdir -p "$OUT"
+uname -a > "$OUT/uname.txt"
+uptime > "$OUT/uptime.txt"
+df -h > "$OUT/df.txt"
+df -i > "$OUT/df_i.txt"
+lsblk > "$OUT/lsblk.txt"
+free -h > "$OUT/free.txt"
+ip a > "$OUT/ip_a.txt"
+ip route > "$OUT/ip_route.txt"
+ss -tulpn > "$OUT/ss.txt"
+sudo systemctl --failed > "$OUT/systemd_failed.txt"
+sudo journalctl -n 1000 > "$OUT/journal_recent.txt"
+sudo tar -czf "${OUT}.tgz" -C /tmp "$(basename "$OUT")"
+echo "Created ${OUT}.tgz"
+
+
+Run:
+
+chmod +x gather.sh
+sudo ./gather.sh
+
+12) A few real quick fixes (copy/paste examples)
+
+Free up systemd logs:
+
+sudo journalctl --vacuum-size=100M
+
+
+Fix permissions for a web app:
+
+sudo chown -R www-data:www-data /var/www/myapp
+sudo find /var/www/myapp -type d -exec chmod 775 {} \;
+sudo find /var/www/myapp -type f -exec chmod 664 {} \;
+
+
+Recover from “process stuck in D state” (I/O hang) — identify process and check disk:
+
+ps -eo pid,stat,cmd | grep ' D ' 
+dmesg | tail -n 50
+sudo smartctl -a /dev/sda
+
+13) Best practices to avoid future headaches
+
+Monitor disks, memory, CPU (Prometheus/Datadog/CloudWatch).
+
+Centralize logs (ELK/Graylog).
+
+Automated backups and snapshots.
+
+Staging environments for upgrades.
+
+Use configuration management (Ansible/Puppet/Chef) and keep playbooks for recovery steps.
+
+Document runbook steps for common incidents.
+
+
