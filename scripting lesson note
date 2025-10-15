@@ -1,0 +1,1652 @@
+Scripting
+==========================================================
+
+Introduction to Automation and System Fundamentals
+
+Course: Learn Academy – Shell Scripting & IT Automation Masterclass
+Level: Beginner → Advanced
+
+=== Learning Objectives   ===
+By the end of this lesson, you should be able to:
+
+Define what automation means in IT and DevOps.
+
+Describe key hardware and software components of a computer system.
+
+Explain the relationship between operating systems, shells, and users.
+
+Use essential Linux commands to explore your environment.
+
+Understand why scripting is critical for productivity and scalability.
+
+=====  What Is Automation?
+
+Automation in computing refers to using software instructions (scripts, jobs, pipelines) to perform tasks without continuous human input.
+
+Relatable examples:
+
+System Administration: Creating 50 user accounts automatically instead of manually.
+
+DevOps: Triggering deployment pipelines in Jenkins or GitHub Actions after each commit.
+
+Cloud Infrastructure: Starting or stopping idle EC2 instances at night using a cron-based shell script.
+
+IT Support: Automatically archiving and compressing logs older than 7 days.
+
+# Why Automation Matters
+
+| Benefit       | Description                        |Example                                    |
+|---------------|------------------------------------|--------------------------------------------|
+| Speed         | Repetitive tasks complete in seconds |Bulk filecleanup                         |
+| Accuracy      | Eliminates manual errors           | Scripted database backup                  |
+| Consistency   | Ensures uniform results    | Deploy identical app versions across environments |
+| Scalability   | Handles thousands of servers       | AWS autoscaling setup scripts             |
+
+
+Computer System Fundamentals
+
+| Component         | Description                          | Example                     |
+|-------------------|--------------------------------------|-----------------------------|
+| CPU               | Executes instructions                | Intel Core i7              |
+| Memory (RAM)      | Temporary data storage              | 16 GB DDR4                 |
+| Storage           | Long-term data persistence          | SSD / HDD                  |
+| Input/Output      | User interaction                    | Keyboard / Monitor         |
+| Operating System  | Bridge between hardware & user programs | Linux, macOS, Windows     |
+
+The Operating System provides a shell that interprets commands entered by the user.
+
+
+============  The Shell and Command Line Interface (CLI)  ==============
+
+A shell is a command interpreter that lets users interact with the operating system.
+
+Types of Shells
+
+| Shell | Path       | Description                  |
+|-------|------------|------------------------------|
+| bash  | /bin/bash  | Default Linux shell          |
+| sh    | /bin/sh    | Original Bourne Shell        |
+| zsh   | /bin/zsh   | Enhanced interactive shell   |
+| ksh   | /bin/ksh   | Korn Shell                   |
+
+Check your current shell:  
+echo $SHELL
+
+=====  Sample Output ========
+
+/bin/bash
+
+============================================
+Understanding $SHELL and command substitution is essential when:
+
+Writing scripts that adapt to different user environments.
+
+Automating remote configurations via SSH.
+
+Running root-level automation without breaking permissions.
+
+================================================
+
+# Command Line Essentials
+
+| Command   | Meaning                        | Example Output                     |
+|-----------|--------------------------------|------------------------------------|
+| pwd       | Show current directory         | /home/emmanuel                    |
+| ls        | List files and folders         | Documents Downloads hello.sh      |
+| whoami    | Show current user              | emmanuel                          |
+| date      | Display current date/time      | Wed Oct 8 18:00:02 WAT 2025      |
+| hostname  | Show system hostname           | learnacademy-vm                   |
+
+
+=======Practice
+
+Create a directory called automation_lab and navigate into it.
+
+Use touch first_script.sh to create your first script.
+
+Edit it with nano or vi and insert:
+
+#!/bin/bash
+echo "Welcome to Learn Academy!"
+date
+whoami
+
+
+Make it executable: chmod +x first_script.sh
+
+Run ./first_script.sh and record the output.
+
+Expected Output
+
+Welcome to Learn Academy!
+Wed Oct 8 18:05:02 WAT 2025
+emmanuel
+==================================================
+
+
+This lists only shell scripts in your directory.
+
+=============  Scripting as Automation Tool  =================
+
+A script is a plain-text file containing a sequence of shell commands.
+
+Example:
+
+#!/bin/bash
+# server_health.sh
+echo "Disk usage:"
+df -h
+echo "Memory status:"
+free -m
+echo "Top processes:"
+top -b -n1 | head -10
+
+
+Run it:
+
+chmod +x server_health.sh
+
+./server_health.sh
+=====================================
+=====================================
+=====================================
+=====================================
+vi is a text editor available on almost every Linux system.
+It opens a new or existing file for editing.
+
+=== server_health.sh is the filename.
+
+=== .sh indicates it’s a shell script.
+
+=== If it doesn’t exist, vi will create it once you save.
+
+When you run that command, you open an empty text editor screen (Vi editor).
+
+Inside the vi editor
+
+To write the script:
+
+Press i → enters INSERT mode
+
+Type your script, for example:
+
+#!/bin/bash
+echo "===== SERVER HEALTH CHECK ====="
+echo "Hostname: $(hostname)"
+echo "Uptime: $(uptime -p)"
+echo "Disk Usage:"
+df -h
+echo "Memory Usage:"
+free -m
+echo "CPU Load:"
+top -bn1 | grep "load average"
+echo "================================"
+
+
+Press Esc
+
+Type :wq → Write (save) and Quit
+
+Congratulations:::: You’ve just created a shell script file called server_health.sh.
+
+======  Command:
+chmod +x server_health.sh
+
+Explanation:
+
+chmod = Change Mode
+Used to modify file permissions (who can read, write, or execute).
+
++x = Add execute permission
+
+server_health.sh = The file you want to make executable.
+
+Before this, your file’s permissions might have looked like:
+
+-rw-r--r--
+
+That means:
+
+Owner can read/write
+
+Others can only read
+
+Nobody can execute
+
+After running:
+
+chmod +x server_health.sh
+
+
+Now it becomes:
+
+-rwxr-xr-x
+
+
+====== Meaning:
+
+Owner can read/write/execute
+
+Others can read/execute
+
+The file is now runnable like a command
+
+====== Command:
+./server_health.sh
+
+Explanation:
+
+./ = Run from the current directory.
+
+server_health.sh = The script file you created.
+
+Linux does not look in the current directory (.) by default when searching for executables — so you must prefix it with ./ to tell the shell,
+
+“Run the server_health.sh script in this current folder.”
+
+$$$$$$$$$$$$$   What Happens Internally  $$$$$$$$$$$$$$
+
+When you execute ./server_health.sh:
+
+The kernel reads the shebang line (#!/bin/bash)
+
+It launches the Bash interpreter
+
+The interpreter runs all commands in the file line by line
+
+Each command executes and outputs to your terminal
+
+=======================================================
+=======================================================
+
+
+This automates what a sysadmin might manually check each morning.
+
+=====++++    Real-Life DevOps Example – Automating EC2 Maintenance   =====++++ 
+
+Problem: Developers forget to shut down dev instances overnight, wasting money.
+Solution: A cron job running this script at 8 PM daily:
+
+#!/bin/bash
+# stop-idle-ec2.sh
+aws ec2 stop-instances --instance-ids $(aws ec2 describe-instances \
+  --filters "Name=tag:Environment,Values=Dev" "Name=instance-state-name,Values=running" \
+  --query "Reservations[*].Instances[*].InstanceId" --output text)
+
+
+This saves hundreds of dollars monthly and demonstrates the business impact of automation.
+
+=====++++  Lab Section  =====++++ 
+ Exploring Your System
+
+Run hostnamectl to view system info.
+
+ Static hostname: ip-172-31-28-174
+       Icon name: computer-vm
+         Chassis: vm 🖴
+      Machine ID: ec28622581a9e9bf3a8ed4ba8574e656
+         Boot ID: aa65940958544c82a19ef260a5c855be
+  Virtualization: amazon
+Operating System: Ubuntu 24.04.3 LTS
+          Kernel: Linux 6.14.0-1011-aws
+    Architecture: x86-64
+ Hardware Vendor: Amazon EC2
+  Hardware Model: t3.micro
+Firmware Version: 1.0
+   Firmware Date: Mon 2017-10-16
+    Firmware Age: 7y 11month 3w 4d
+
+
+Use df -h to view disk usage.
+
+ubuntu@ip-172-31-28-174:~$ df -h
+Filesystem       Size  Used Avail Use% Mounted on
+/dev/root        6.8G  1.8G  5.0G  27% /
+tmpfs            458M     0  458M   0% /dev/shm
+tmpfs            183M  876K  182M   1% /run
+tmpfs            5.0M     0  5.0M   0% /run/lock
+efivarfs         128K  3.6K  120K   3% /sys/firmware/efi/efivars
+/dev/nvme0n1p16  881M   87M  733M  11% /boot
+/dev/nvme0n1p15  105M  6.2M   99M   6% /boot/efi
+tmpfs             92M   12K   92M   1% /run/user/1000
+
+===============================
+
+Try combining commands using pipes:
+
+ls -l | grep ".sh"
+
+=====++++  System Report Script   =====++++ 
+
+Write a script sys_report.sh that:
+
+Displays hostname, uptime, current user, and disk usage.
+
+Saves output to /tmp/system_report.txt.
+
+
+#!/bin/bash
+echo "Hostname: $(hostname)" > /tmp/system_report.txt
+echo "Uptime: $(uptime)" >> /tmp/system_report.txt
+echo "User: $(whoami)" >> /tmp/system_report.txt
+df -h >> /tmp/system_report.txt
+
+
+=====   chmod +x sys_report.sh
+=====   ./sys_report.sh
+=====   cat /tmp/system_report.txt
+
+=====++++  DevOps Scenario Simulation  =====++++ 
+
+As a DevOps Engineer, you need to check if a web application is running every 5 minutes.
+
+#!/bin/bash
+url="https://learnacademy.com"
+if curl -Is $url | head -1 | grep "200" > /dev/null
+then
+  echo "$(date): $url is reachable" >> /var/log/url_check.log
+else
+  echo "$(date): $url is DOWN" >> /var/log/url_check.log
+fi
+
+
+=====++++  Schedule it with cron to simulate continuous monitoring. =====++++ 
+Interactive User Input
+
+Create a script that asks for your name and greets you.
+
+#!/bin/bash
+read -p "Enter your name: " name
+echo "Hello $name, welcome to Learn Academy!"
+
+
+Expected Output:
+
+Enter your name: Emmanuel
+Hello Emmanuel, welcome to Learn Academy!
+
+=====++++ Practice Questions  =====++++ 
+
+Explain the role of the shell in an operating system and list three different types of shells.
+
+Write a script that displays the current date, time, and logged-in user in a single line.
+
+Describe a real-life task in your current or ideal DevOps job that you could automate with a shell script.
+
+Identify three Linux commands useful for system monitoring and explain what each does.
+
+Bonus Challenge: Modify sys_report.sh to email the report automatically (using mailx or sendmail if available).
+
+Using mailx
+$$ sudo apt update
+$$ sudo apt install mailutils
+$$ sudo apt install ssmtp
+
+#!/bin/bash
+
+# Generate system report
+echo "Hostname: $(hostname)" > /tmp/system_report.txt
+echo "Uptime: $(uptime)" >> /tmp/system_report.txt
+echo "User: $(whoami)" >> /tmp/system_report.txt
+echo "$(df -h)" >> /tmp/system_report.txt
+
+# Email the report
+recipient="your_email@example.com"
+subject="System Report for $(hostname) - $(date)"
+mailx -s "$subject" "$recipient" < /tmp/system_report.txt
+=========================================================================================
+=========================================================================================
+++++++++   Steps to Set Up and Test on EC2  ++++++++++++
+
+1. Install Required Packages
+You’ve already listed the commands to install mailutils and ssmtp. Let’s confirm and execute them:
+bashsudo apt update
+sudo apt install mailutils
+sudo apt install ssmtp
+
+What this does:
+
+mailutils: Installs mailx, a command-line tool for sending emails.
+ssmtp: A lightweight mail transfer agent that forwards emails to an external SMTP server (e.g., Gmail).
+
+
+Verify installation:
+
+bashmailx --version
+ssmtp --help
+
+Ensure both are installed correctly.
+
+2. Configure ssmtp for Email Sending
+Since EC2 instances don’t typically run a full mail server, ssmtp is a great choice to relay emails through an external SMTP server (e.g., Gmail). You’ll need to configure ssmtp with your SMTP server details.
+
+Edit the ssmtp configuration file:
+bashsudo nano /etc/ssmtp/ssmtp.conf
+Add or update the following for Gmail (replace with your SMTP server details if using another provider):
+plaintextroot=your_gmail@gmail.com
+mailhub=smtp.gmail.com:587
+AuthUser=your_gmail@gmail.com
+AuthPass=your_app_password
+UseSTARTTLS=YES
+FromLineOverride=YES
+
+NB:
+
+Replace your_gmail@gmail.com with your Gmail address.
+For AuthPass, use a Gmail App Password (not your regular password, especially if 2FA is enabled). Generate one at:
+
+Google Account → Security → 2-Step Verification → App Passwords → Generate (select “Mail” and “Other”).
+
+
+Save and exit (Ctrl+O, Enter, Ctrl+X).
+
+
+
+
+Update revaliases (optional, for mapping local users to email addresses):
+sudo nano /etc/ssmtp/revaliases
+Add:
+plaintextubuntu:your_gmail@gmail.com:smtp.gmail.com:587
+Replace ubuntu with your EC2 username if different.
+Set permissions (for security):
+sudo chmod 640 /etc/ssmtp/ssmtp.conf
+sudo chown root:mail /etc/ssmtp/ssmtp.conf
+
+
+3. Update the Script with Error Handling
+Your script is functional but could benefit from error handling to catch issues like missing mailx or email delivery failures. Here’s an improved version of sys_report.sh:
+
+bash#!/bin/bash
+
+# Generate system report
+echo "Hostname: $(hostname)" > /tmp/system_report.txt
+echo "Uptime: $(uptime)" >> /tmp/system_report.txt
+echo "User: $(whoami)" >> /tmp/system_report.txt
+echo "$(df -h)" >> /tmp/system_report.txt
+
+# Email the report
+recipient="your_email@example.com"  # Replace with your email
+subject="System Report for $(hostname) - $(date)"
+
+# Check if mailx is installed
+if ! command -v mailx &>/dev/null; then
+    echo "Error: mailx not installed. Please run 'sudo apt install mailutils'."
+    exit 1
+fi
+
+# Send the email and check for success
+if mailx -s "$subject" "$recipient" < /tmp/system_report.txt; then
+    echo "Report emailed successfully to $recipient"
+else
+    echo "Error: Failed to send email to $recipient"
+    exit 1
+fi
+
+Changes:
+
+Added a check for mailx availability.
+Added success/failure feedback for the email command.
+Replace your_email@example.com with your actual email address (e.g., your Gmail address).
+
+
+Save the script:
+bashnano sys_report.sh
+Paste the updated script, save, and exit.
+Make it executable:
+chmod +x sys_report.sh
+
+
+4. Test Sending an Email
+Before running the script, test mailx manually to ensure ssmtp is configured correctly:
+echo "Test email from EC2" | mailx -s "Test Email" your_email@example.com
+
+Check your email inbox (and spam/junk folder).
+If it fails, check the mail logs:
+sudo tail -f /var/log/mail.log
+Common issues:
+
+Incorrect ssmtp.conf settings (e.g., wrong App Password).
+EC2 security group blocking outbound port 587 (STARTTLS).
+
+
+
+5. Run the Script
+Execute the script:
+./sys_report.sh
+
+Expected output (if successful):
+textReport emailed successfully to your_email@example.com
+
+Check your email for the report, which should look like the contents of /tmp/system_report.txt you provided:
+textHostname: ip-172-31-28-174
+Uptime:  21:46:24 up 25 min,  1 user,  load average: 0.00, 0.00, 0.00
+User: ubuntu
+Filesystem       Size  Used Avail Use% Mounted on
+/dev/root        6.8G  1.8G  5.0G  27% /
+tmpfs            458M     0  458M   0% /dev/shm
+tmpfs            183M  876K  182M   1% /run
+tmpfs            5.0M     0  5.0M   0% /run/lock
+efivarfs         128K  3.6K  120K   3% /sys/firmware/efi/efivars
+/dev/nvme0n1p16  881M   87M  733M  11% /boot
+/dev/nvme0n1p15  105M  6.2M   99M   6% /boot/efi
+tmpfs             92M   12K   92M   1% /run/user/1000
+
+
+6. EC2-Specific Considerations
+
+Security Groups: Ensure your EC2 instance’s security group allows outbound traffic on port 587 (for Gmail’s STARTTLS). Check in the AWS EC2 Console:
+
+Security Groups → Select your instance’s group → Edit Outbound Rules → Add TCP port 587 to 0.0.0.0/0 (or restrict to Gmail’s IP range for security).
+
+
+AWS SES Alternative: If Gmail or ssmtp is unreliable, consider using AWS Simple Email Service (SES) for sending emails. You’d need to configure SES credentials and use a tool like aws ses send-email (requires AWS CLI).
+Rate Limits: AWS may throttle outbound SMTP traffic on EC2. If emails fail, check AWS documentation or consider SES.
+
+7. Automate with Cron (Optional)
+For practice, you can schedule the script to run periodically using cron:
+bashcrontab -e
+Add:
+0 8 * * * /home/ubuntu/automation_lab/sys_report.sh
+This runs the script daily at 8 AM. Adjust the path if your script is elsewhere.
+8. Troubleshooting
+
+Email not received:
+
+Check /var/log/mail.log or /var/log/syslog for errors.
+Verify ssmtp.conf settings and App Password.
+Test connectivity to smtp.gmail.com:587:
+telnet smtp.gmail.com 587
+
+
+
+Script errors:
+
+Ensure mailx and ssmtp are installed.
+Check file permissions: ls -l sys_report.sh (should be -rwxr-xr-x).
+Run with bash -x sys_report.sh for debugging.
+
+
+EC2 permissions: 
+Ensure your IAM role allows necessary network access if using AWS services.
+
+Final Notes
+
+Replace your_email@example.com with your actual email address.
+Secure your ssmtp.conf file, as it contains sensitive credentials.
+For production use, avoid hardcoding email addresses or credentials in the script. Use environment variables or a separate configuration file.
+
+
+=============================================================================================
+=============================================================================================
+
+Introduction to Linux and the Command Line Interface (CLI)
+
+Course: Learn Academy – Shell Scripting & IT Automation Masterclass
+Level: Beginner → Advanced
+Estimated Time: 3 hours
+
+=====++++  Learning Objectives =====++++ 
+
+By the end of this lesson, you should be able to:
+
+Understand what Linux is and its structure.
+
+Navigate the Linux file system effectively using CLI commands.
+
+Differentiate between absolute and relative paths.
+
+Manage files and directories (create, move, delete, rename).
+
+Apply real-world use cases of file management in DevOps environments.
+
+=====++++   What is Linux?  =====++++ 
+
+Linux is a free, open-source, Unix-like operating system that powers servers, cloud infrastructure, and development environments worldwide.
+
+Where You’ll Find Linux:
+# Linux Roles
+
+| Environment   | Linux Role                                                                 |
+|---------------|---------------------------------------------------------------------------|
+| Cloud         | Runs 90%+ of public cloud workloads (AWS, GCP, Azure).                    |
+| Servers       | Used for web, application, and database servers.                          |
+| DevOps        | CI/CD pipelines, Docker, Kubernetes nodes run on Linux.                   |
+| Networking    | Routers, firewalls, and IoT devices often run embedded Linux.             |
+
+Linux File System Hierarchy
+
+The Linux filesystem is tree-like, starting from the root /.
+
+/
+├── bin     → Essential commands
+├── boot    → Boot loader files
+├── dev     → Device files
+├── etc     → Configuration files
+├── home    → User directories
+├── var     → Logs, cache, spool
+├── tmp     → Temporary files
+├── usr     → User programs
+└── root    → Home directory for root user
+
+Example:
+
+/home/emmanuel/ → user’s personal folder.
+
+/var/log/syslog → system log file.
+
+/etc/ssh/sshd_config → SSH server configuration.
+
+# Navigating the CLI
+
+| Command   | Description                  | Example Output                     |
+|-----------|------------------------------|------------------------------------|
+| pwd       | Print working directory      | /home/emmanuel                    |
+| ls        | List directory contents      | Documents Downloads scripts       |
+| cd        | Change directory             | cd /etc                           |
+| ls -la    | Show hidden files            | .bashrc .profile Documents        |
+
+Tip:
+
+. → Current directory
+
+.. → Parent directory
+
+Example:
+
+cd /home/emmanuel
+cd ..
+pwd
+
+
+Output:
+
+/home
+
+====+++++++++++++  Paths (Absolute vs Relative)  ====+++++++++++++ 
+# Path Types
+
+| Type          | Example                          | Description                          |
+|---------------|----------------------------------|--------------------------------------|
+| Absolute Path | /home/emmanuel/scripts/test.sh   | Starts from / (root).               |
+| Relative Path | ../scripts/test.sh               | Relative to current directory.       |
+
+Example Demo:
+
+cd /home/emmanuel/Documents
+cat ../scripts/test.sh
+
+
+The script runs from the relative location.
+
+==========+++++++++++   File & Directory Management   ==========+++++++++++   
+# File and Directory Operations
+
+| Task                | Command                     | Example                              |
+|---------------------|-----------------------------|--------------------------------------|
+| Create file         | touch file.txt              | Create an empty text file           |
+| Create directory    | mkdir devops_scripts        |                                      |
+| Copy file           | cp file.txt /tmp/           | Copy to /tmp                        |
+| Move/Rename         | mv file.txt report.txt      | Rename                              |
+| Delete file         | rm report.txt               |                                      |
+| Delete directory    | rm -r old_data/             | Recursively remove a directory      |
+
+
++++++======  Real-Life DevOps Example – Managing Deployment Scripts   =========++++++++++
+
+Scenario: You are a DevOps engineer managing multiple environment scripts (dev, staging, prod).
+
+You can structure directories like this:
+
+/opt/deployments/
+├── dev/
+│   └── deploy_dev.sh
+├── staging/
+│   └── deploy_staging.sh
+└── prod/
+    └── deploy_prod.sh
+
+
+You use commands:
+
+cd /opt/deployments/prod
+ls -l
+./deploy_prod.sh
+
+
+Proper navigation prevents errors like deploying staging code to production.
+
+
+==========+++++++ Viewing and Editing Files  ==========+++++++
+
+| Command           | Description                |
+|-------------------|----------------------------|
+| cat file.txt      | Display file content       |
+| head file.txt     | Show first 10 lines        |
+| tail file.txt     | Show last 10 lines         |
+| nano file.txt     | Simple text editor         |
+| vi file.txt       | Advanced editor (Vim)      |
+
+Example:
+cat /etc/os-release
+
+Output:
+
+PRETTY_NAME="Ubuntu 24.04.3 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.3 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+
+
+==========+++++++   File Permissions   ==========+++++++
+
+Each file has three permission levels: owner, group, others.
+
+Example output:
+
+ls -l
+
+-rwxr-xr-- 1 emmanuel devops 1024 Oct 8 18:20 script.sh
+
+Symbol	Meaning
+r	Read
+w	Write
+x	Execute
+
+Change permissions:
+
+chmod 755 script.sh
+
+==========+++++++  Real-World DevOps Example – Securing Scripts  ==========+++++++
+
+When deploying critical scripts:
+
+chmod 700 deploy_prod.sh
+
+
+Only the owner (e.g., DevOps lead) can execute it — ensuring security in production.
+
+Practise exercise
+
+1 – Explore File System
+
+Print your current directory (pwd).
+
+Navigate to /etc and list 10 files.
+
+Return to your home directory using cd ~.
+
+Create a directory called cli_lab.
+
+Inside it, create two files: a.txt, b.txt.
+
+2 – File Management Practice
+
+Copy a.txt to /tmp/a_backup.txt.
+
+Rename b.txt to log.txt.
+
+Move both files into a subfolder called archive/.
+
+Delete one file safely using rm -i filename.
+
+3 – Permission Management
+
+Create secure_script.sh and make it executable.
+
+Set permissions so only you can read and execute it.
+
+Verify with ls -l secure_script.sh.
+
+4 – View and Edit
+
+Use cat to display /etc/passwd.
+
+Use head and tail to view the first and last 5 lines.
+
+Edit a.txt using nano and write:
+
+Welcome to Learn Academy CLI Training
+
+
+Save and verify the content.
+
+==========+++++++++++   Practice Questions  ++++++++++++================
+
+What is the difference between absolute and relative paths? Give examples.
+
+Explain the Linux file system hierarchy — what’s stored in /etc, /home, and /var?
+
+How can you view hidden files in a directory?
+
+Which command would you use to:
+
+Create a directory named backups
+
+Copy a file into it
+
+Restrict access to owner only
+
+Bonus Challenge: Write a shell command that lists all .log files in /var/log and saves the output to logs_list.txt.
+
+
+=======++++  Summary & Next Steps  =======++++
+
+You’ve mastered:
+
+The Linux file system structure
+
+CLI navigation and file management
+
+File permissions and access control
+
+======+++++++++++ Understanding the Shell and Shell Types  =======++++
+Learning Objectives
+
+By the end of this lesson, you will be able to:
+
+Define what a shell is and explain how it interacts with the operating system.
+
+Identify and differentiate between common shell types (Bash, Zsh, Sh, Dash, etc.).
+
+Understand how shells process commands, including environment variables, aliases, and history.
+
+Create and run a basic interactive shell script using variables and commands.
+
+=======++++   Customize your shell environment for productivity and automation.   =======++++
+
+Concept Overview: What Is a Shell?
+
+A shell is a command interpreter that acts as a bridge between the user and the Linux kernel.
+When you type a command like ls or pwd, the shell reads, interprets, and executes it by calling the underlying system programs.
+
+In short:
+
+User → Shell → Kernel → Hardware
+
+🔍 Why the Shell Matters in Automation
+
+When automating systems:
+
+Shells execute commands in non-interactive mode (through scripts).
+
+They can read files, loop over tasks, and make decisions.
+
+They provide portability, meaning a script written in Bash can run on hundreds of servers without modification.
+
+++++++===========  Common Shell Types   ======+++++++++++
+
+| Shell | Description                              | Command | Key Advantage                  |
+|-------|------------------------------------------|---------|--------------------------------|
+| Bash  | Popular, used in DevOps automation       | bash    | Portable, scriptable           |
+| Sh    | Minimal Bourne Shell                     | sh      | Lightweight, compatible        |
+| Zsh   | Modern, user-friendly                    | zsh     | Auto-suggestions, themes       |
+| Dash  | Debian’s default, fast for scripts       | dash    | Performance optimized          |
+| Fish  | Friendly, interactive                    | fish    | Colorful, smart suggestions    |
+
+To see what shell you’re using:
+
+echo $SHELL
+
+
+Expected Output:
+
+/bin/bash
+
+
+To list all available shells on your system:
+
+cat /etc/shells
+
+⚙️ 3. How the Shell Interprets Commands
+
+Let’s break down how the shell interprets your input step-by-step:
+
+# Shell Command Execution Steps
+
+| Step | Process                                                        |
+|------|----------------------------------------------------------------|
+| 1️⃣   | You type a command (e.g., ls -l /etc).                         |
+| 2️⃣   | The shell parses it — separates the command and arguments.     |
+| 3️⃣   | It searches for the command in $PATH.                          |
+| 4️⃣   | The shell runs it and passes results to the standard output (stdout). |
+| 5️⃣   | It records the command in history (if interactive).            |
+
+#########Check Your Command Path
+
+which ls
+
+
+Output:
+
+/bin/ls
+
+
+This tells you where the command binary is located.
+
+=====++++++++++   Environment Variables    +++++++===========
+
+Environment variables are temporary storage values that store system-wide or session-specific data.
+They’re key for automation, because scripts often rely on variables like file paths, usernames, or configuration keys.
+
+# Environment Variables
+
+| Variable | Meaning                                | Example                       |
+|----------|----------------------------------------|-------------------------------|
+| $HOME    | User’s home directory                 | /home/ubuntu                 |
+| $USER    | Current username                      | ubuntu                       |
+| $PATH    | List of directories where commands are searched | /usr/bin:/bin:/usr/local/bin |
+| $PWD     | Current working directory             | /var/www                     |
+| $SHELL   | Current shell path                    | /bin/bash                    |
+
+ =======++++++++++  Try This  ++++++++++++==================  
+`echo $USER`  
+`echo $HOME`  
+`echo $PWD`
+
+
+You can set your own variable:
+
+NAME="Learn Academy"
+echo "Welcome to $NAME"
+
+
+Expected Output:
+
+Welcome to Learn Academy
+
+
+To make it permanent, add it to your ~/.bashrc:
+
+export COMPANY="Learn Academy"
+
+
+Then reload:
+
+source ~/.bashrc
+
++++++++++======= Command History and Aliases  ++++++++++================
+
+The shell keeps a record of previously executed commands — accessible via:
+
+history
+
+To repeat a command:
+
+!15
+
+
+(This re-executes the 15th command in your history list.)
+
+::::::::::::::::  You can also create aliases to simplify long commands::::::::::::::::::::::
+
+alias ll='ls -la'
+alias gs='git status'
+
+
+++++==== Add these to ~/.bashrc to persist them.  :::::::::::::::::::::
+
+Reload your shell:
+
+source ~/.bashrc
+
+
+Now, typing ll runs ls -la.
+
+::::::::::::::::::::: Lab Exercise: Creating and Running an Interactive Shell Script:::::::::::::
+Objective:
+
+Automate a “System Info Summary” script that greets the user, displays date, uptime, and disk usage.
+
+Step-by-Step:
+
+1️ Create the file:
+
+nano or vi system_info.sh
+
+
+2️ Add the following script:
+
+#!/bin/bash
+# System Info Script
+echo "==================================="
+echo "Welcome, $USER!"
+echo "Today's Date: $(date)"
+echo "Your Home Directory: $HOME"
+echo "-----------------------------------"
+echo "System Uptime:"
+uptime
+echo "-----------------------------------"
+echo "Disk Usage:"
+df -h | grep /dev/
+echo "-----------------------------------"
+echo "Goodbye from Learn Academy!"
+echo "==================================="
+
+
+3️ Make it executable:
+
+chmod +x system_info.sh
+
+
+4️ Run it:
+
+./system_info.sh
+
+
+Expected Output:
+
+===================================
+Welcome, ubuntu!
+Today's Date: Wed Oct  8 19:21:43 UTC 2025
+Your Home Directory: /home/ubuntu
+-----------------------------------
+System Uptime:
+ 19:21:43 up 2 days,  4:07,  2 users,  load average: 0.05, 0.01, 0.00
+-----------------------------------
+Disk Usage:
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/xvda1       40G  8.1G   32G  21% /
+-----------------------------------
+Goodbye from Learn Academy!
+===================================
+
+
+This script mimics a real-world DevOps health-check, useful for server reports or login banners.
+
++=++++++++++++++   Real-Life Example: Using the Shell for Deployment Prep   +++============
+
+Let’s simulate a pre-deployment check before an app update:
+
+#!/bin/bash
+echo "Starting pre-deployment checks..."
+echo "Checking system uptime:"
+uptime
+echo "Checking disk space availability:"
+df -h | grep /dev/
+echo "Checking memory usage:"
+free -h
+echo "Checking for running nginx process:"
+pgrep nginx && echo "Nginx running" || echo "Nginx not found!"
+echo "Pre-deployment checks complete."
+
+
+Why it matters:
+In DevOps, this type of automation runs inside CI/CD pipelines to validate infrastructure before code deployment.
+
++++++===== Practice Questions  +++++=======
+
+1️ Explain the difference between interactive and non-interactive shells.
+2️ What does the $PATH variable do, and why is it important for automation?
+3️ Create a script that prints the current username, hostname, and date in one line.
+4️ What does the !10 command do in shell history?
+5️ Write an alias for ls -l --color=auto and make it permanent.
+6️ Explain how environment variables enhance shell scripting flexibility.
+
+Lesson Summary
+
+✅ A shell interprets and executes user commands.
+✅ Bash is the most common shell for automation scripting.
+✅ Environment variables make scripts flexible and dynamic.
+✅ Aliases and history increase speed and productivity.
+✅ Shell scripting is the foundation for all DevOps automation pipelines.
+
+======+++++++  Writing and Running Your First Script (Deep Dive) +++++=========
+You’ll learn how to:
+
+Write structured scripts with input and output.
+
+Use variables, comments, and read commands.
+
+Execute scripts with or without permissions.
+
+Apply them to real-world automation scenarios (like provisioning servers or configuring users).
+
+===========================================================
+===========================================================
+
++++++++++=========  Core Shell Scripting ============++++++++++
+
+Writing and Running Your First Script (Deep Dive)
+Learning Objectives
+
+By the end of this lesson, learners will be able to:
+
+Create, edit, and execute shell scripts properly.
+
+Understand and use the shebang (#!) line.
+
+Apply permissions and understand executable rights.
+
+Work with comments, variables, and user input.
+
+Test and debug scripts effectively.
+
+===++++++++++====  1. What Is a Shell Script?
+
+A shell script is a file containing a series of Linux commands that are executed sequentially.
+Instead of typing commands one by one, you can automate them in a script — saving time and avoiding human error.
+
+Example:
+
+Manual Command Execution  →  Automated Script Execution
+
+hy Shell Scripts Matter
+
+In real-world DevOps and cloud automation:
+
+You automate server provisioning, log rotation, build deployment, and user management.
+
+Scripts form the backbone of CI/CD pipelines, cloud-init configurations, and infrastructure bootstrapping.
+
+=====++++   Structure of a Shell Script
+
+# Shell Script Structure
+
+| Component       | Description                                      | Example                       |
+|-----------------|--------------------------------------------------|-------------------------------|
+| Shebang         | Specifies the interpreter to use                | #!/bin/bash                  |
+| Script Name     | Name of the script (as a comment)               | # Script Name: example.sh    |
+| Description     | Brief explanation of the script’s purpose        | # Description: Prints a welcome message |
+
+echo "Welcome to Learn Academy"
+echo "Current User: $USER"
+echo "Today’s Date: $(date)"
+
+
+Let’s break this down:
+
+Line	Meaning
+#!/bin/bash	Shebang — tells Linux which shell should interpret the script.
+#	Comment symbol — ignored by the shell, used for documentation.
+echo	Command to print output.
+$USER, $(date)	Variables and command substitution.
+💻 3. Creating and Running Your First Script
+Step 1 – Create a Script File
+nano first_script.sh
+
+Step 2 – Add the Code
+#!/bin/bash
+# My first script
+echo "Hello, $USER!"
+echo "Welcome to your first automation task."
+echo "This script is running from: $PWD"
+echo "Today's date is: $(date)"
+
+Step 3 – Save and Exit
+
+Press CTRL + O, ENTER, and CTRL + X.
+
+Step 4 – Check File Permissions
+ls -l first_script.sh
+
+
+Output:
+
+-rw-r--r-- 1 ubuntu ubuntu 125 Oct 8 20:11 first_script.sh
+
+
+The file is not executable yet.
+
+🔑 4. Making a Script Executable
+
+Add execution permission using:
+
+chmod +x first_script.sh
+
+
+Verify:
+
+ls -l first_script.sh
+
+
+Now it shows:
+
+-rwxr-xr-x 1 ubuntu ubuntu 125 Oct 8 20:11 first_script.sh
+
+
+✅ The x means executable.
+
+Running the Script
+
+There are three ways to execute it:
+
+Method	Command	Notes
+Direct Execution	./first_script.sh	Runs if script is executable
+Explicit Shell	bash first_script.sh	Works even if not executable
+Full Path	/home/ubuntu/first_script.sh	Useful in automation pipelines
+
+Expected Output:
+
+Hello, ubuntu!
+Welcome to your first automation task.
+This script is running from: /home/ubuntu
+Today's date is: Wed Oct 8 20:12:23 UTC 2025
+
+🧩 5. Using Variables in Scripts
+
+Variables store information temporarily during script execution.
+
+Example:
+#!/bin/bash
+NAME="Yomi"
+COURSE="Shell Automation"
+echo "Hello $NAME, welcome to $COURSE training!"
+
+
+Output:
+
+Hello Yomi, welcome to Shell Automation training!
+
+🧠 Dynamic Variables
+
+Use system variables:
+
+#!/bin/bash
+echo "You are logged in as $USER"
+echo "Your home directory is $HOME"
+echo "The script name is $0"
+
+
+Output:
+
+You are logged in as ubuntu
+Your home directory is /home/ubuntu
+The script name is ./myscript.sh
+
+🧰 6. Accepting User Input
+
+You can prompt the user for input using the read command:
+
+#!/bin/bash
+echo "Enter your name:"
+read NAME
+echo "Hello $NAME, welcome to Learn Academy!"
+
+
+Run it:
+
+./input_script.sh
+
+
+Output:
+
+Enter your name:
+Oluwayomi
+Hello Oluwayomi, welcome to Learn Academy!
+
+
+💡 Real use-case: asking for parameters during deployment (e.g., app name, environment, or version number).
+
+🧪 7. Lab Exercise: Build a Script That Summarizes System Info
+Objective:
+
+Create a script that automates the collection of system information (useful for server health checks).
+
+Steps:
+
+1️⃣ Create the script:
+
+nano sys_report.sh
+
+
+2️⃣ Add this code:
+
+#!/bin/bash
+# System Report Script
+
+echo "=============================="
+echo "System Report for: $HOSTNAME"
+echo "Date: $(date)"
+echo "User: $USER"
+echo "------------------------------"
+echo "Uptime:"
+uptime
+echo "------------------------------"
+echo "Disk Usage:"
+df -h | grep /dev/
+echo "------------------------------"
+echo "Top 5 Memory Consuming Processes:"
+ps aux --sort=-%mem | head -6
+echo "=============================="
+
+
+3️⃣ Make it executable:
+
+chmod +x sys_report.sh
+
+
+4️⃣ Run it:
+
+./sys_report.sh
+
+
+✅ Expected Output:
+
+==============================
+System Report for: webserver
+Date: Wed Oct  8 20:30:42 UTC 2025
+User: ubuntu
+------------------------------
+Uptime:
+ 20:30:42 up 3 days,  load average: 0.05, 0.02, 0.00
+------------------------------
+Disk Usage:
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/xvda1       40G  8.1G   32G  21% /
+------------------------------
+Top 5 Memory Consuming Processes:
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.2 168352  8648 ?        Ss   Oct05   0:02 /sbin/init
+==============================
+
+🧩 8. Real-Life Example: Server Backup Automation
+
+A script to back up web files into a timestamped archive.
+
+#!/bin/bash
+SOURCE="/var/www/html"
+DEST="/backup"
+FILENAME="backup_$(date +%Y%m%d_%H%M%S).tar.gz"
+
+echo "Starting backup..."
+tar -czf $DEST/$FILENAME $SOURCE
+echo "Backup completed successfully!"
+echo "Saved as: $DEST/$FILENAME"
+
+
+💡 Used daily in web operations to create rolling backups automatically.
+
+🧩 Practice Questions
+
+1️⃣ What does the #!/bin/bash line do, and why is it necessary?
+2️⃣ Create a script that greets the user and prints the time in HH:MM format.
+3️⃣ What’s the difference between bash script.sh and ./script.sh?
+4️⃣ Write a script that:
+
+Prompts the user for their name.
+
+Prints today’s date.
+
+Says “Good morning/afternoon/evening” based on the time of day.
+5️⃣ What is the purpose of chmod +x in automation pipelines?
+
+🧱 Lesson Summary
+
+✅ Shell scripts automate repetitive tasks.
+✅ Shebang defines the shell interpreter.
+✅ Variables store data and make scripts reusable.
+✅ User input can make automation flexible.
+✅ Permissions and chmod are crucial for execution.
+
+🚀 Next Lesson Preview:
+Lesson 5 – Understanding File Permissions and Execution Rights
+
+You’ll learn how:
+
+Linux enforces file ownership and permission levels.
+
+To manage executable rights and group access.
+
+Permissions affect automation reliability and DevOps security.
+
+To troubleshoot “Permission denied” issues in real deployments.
+
+================================================================================
+================================================================================
+
+Lesson 5: File Management and Permissions in Linux
+Lesson Objectives
+
+By the end of this lesson, learners should be able to:
+
+Understand the Linux filesystem hierarchy and how files are stored.
+
+Create, copy, move, rename, and delete files and directories.
+
+Understand file permissions and ownership.
+
+Modify permissions using chmod, chown, and chgrp.
+
+Apply real-life permission management scenarios (DevOps & security use cases).
+
+Perform hands-on labs to reinforce mastery.
+
+5.1 Understanding the Linux File System
+
+The Linux filesystem is hierarchical — everything starts from the root directory /.
+
+Directory	Description
+/	Root directory — top of the file structure.
+/home	Contains user home directories (e.g., /home/emmanuel).
+/etc	Configuration files for the system and services.
+/var	Variable data (logs, mail, databases).
+/tmp	Temporary files deleted on reboot.
+/usr	User programs, libraries, and documentation.
+/bin	Essential binaries (commands like ls, cat, cp).
+/sbin	System binaries for administrative tasks.
+/opt	Optional software packages.
+/dev	Device files (hard drives, USBs, etc.).
+/proc	Virtual filesystem for system and process information.
+
+🧠 Real-life Analogy:
+Think of Linux as a library:
+
+/ is the entire building.
+
+/home is your personal shelf.
+
+/etc is the library rules and guidelines.
+
+/var is where daily logs are written.
+
+/usr/bin is the tools and equipment room.
+
+5.2 File and Directory Management Commands
+Creating Files
+touch file1.txt
+echo "Learn Academy Linux course" > note.txt
+
+
+✅ Explanation:
+
+touch creates an empty file.
+
+echo with > writes content into a file (overwrites if it exists).
+
+Viewing Files
+cat note.txt
+less /etc/passwd
+head -n 5 note.txt
+tail -n 10 /var/log/syslog
+
+
+✅ cat displays content.
+✅ less allows scrolling.
+✅ head shows the first few lines; tail shows the last few lines.
+
+Copying, Moving, and Deleting
+cp note.txt backup_note.txt
+mv backup_note.txt /home/emmanuel/Documents/
+rm file1.txt
+rm -r old_folder/
+
+
+✅ cp = copy
+✅ mv = move or rename
+✅ rm = remove file
+✅ rm -r = recursively delete directories
+
+⚠️ Caution: rm -rf / will delete everything — never run it!
+
+Renaming Files
+mv oldname.txt newname.txt
+
+Creating and Navigating Directories
+mkdir projects
+mkdir -p projects/learnacademy/lesson5
+cd projects/learnacademy/lesson5
+pwd
+
+
+✅ -p ensures parent directories are created automatically.
+✅ pwd shows current directory.
+
+5.3 File Permissions in Linux
+
+Every file in Linux has 3 types of permissions for 3 classes of users.
+
+Permission Classes
+Symbol	Meaning
+u	User (owner)
+g	Group
+o	Others (everyone else)
+Permission Types
+Symbol	Meaning	Example
+r	Read	View contents
+w	Write	Modify contents
+x	Execute	Run as a program
+Viewing Permissions
+ls -l
+
+
+Output:
+
+-rwxr-xr-- 1 emmanuel devs 2048 Oct 8 15:00 deploy.sh
+
+
+✅ Breakdown:
+
+- → regular file
+
+rwx → user can read/write/execute
+
+r-x → group can read and execute
+
+r-- → others can only read
+
+Changing Permissions
+chmod u+x deploy.sh
+chmod 755 deploy.sh
+
+
+✅ Symbolic mode: u+x → give execute permission to the user.
+✅ Numeric mode:
+
+Number	Permission	Meaning
+7	rwx	Full access
+6	rw-	Read + write
+5	r-x	Read + execute
+4	r--	Read only
+0	---	No access
+
+Example:
+chmod 755 deploy.sh → user = 7, group = 5, others = 5
+→ rwx for user, r-x for others.
+
+Changing Ownership
+sudo chown emmanuel:devs deploy.sh
+
+
+✅ Changes file ownership to user emmanuel and group devs.
+
+Changing Group Only
+sudo chgrp devs note.txt
+
+5.4 Real-Life DevOps Scenario
+
+🎯 Scenario:
+Emmanuel needs to deploy a Jenkins job script /opt/jenkins/scripts/deploy.sh, but the Jenkins service runs as user jenkins.
+
+sudo chown jenkins:jenkins /opt/jenkins/scripts/deploy.sh
+sudo chmod 750 /opt/jenkins/scripts/deploy.sh
+
+
+✅ This ensures:
+
+Jenkins can execute the file.
+
+Others can’t modify it.
+
+System remains secure.
+
+5.5 Lab Exercises
+Lab 1: Create and Manage Files
+
+Create a directory ~/lesson5_practice.
+
+Inside it, create 3 files: alpha.txt, beta.txt, and gamma.txt.
+
+Write different lines into each file using echo.
+
+Copy alpha.txt to /tmp/alpha_copy.txt.
+
+Move beta.txt to /home/emmanuel/Documents/.
+
+Lab 2: Test Permissions
+
+Create a file called test.sh with:
+
+#!/bin/bash
+echo "Learn Academy is awesome!"
+
+
+Run it — you’ll get a “Permission denied” error.
+
+Grant execute permission:
+
+chmod +x test.sh
+./test.sh
+
+
+Observe the difference.
+
+Lab 3: Ownership and Security
+
+Create a group students.
+
+Add your user to the group:
+
+sudo usermod -aG students emmanuel
+
+
+Change group ownership of your project folder:
+
+sudo chgrp -R students ~/projects
+
+
+Set permissions so only group members can read:
+
+chmod -R 750 ~/projects
+
+5.6 Practice Questions
+
+What does chmod 644 file.txt mean in terms of permissions?
+
+How does Linux differentiate between user, group, and others in a file listing?
+
+Why is rm -rf considered dangerous, and how can you avoid misuse?
+
+In a DevOps setup, why might you want Jenkins to own your deployment script?
+
+How can you recursively change ownership of a directory and its contents?
+
+Lesson Summary
+
+Linux treats everything as a file, including devices.
+
+The filesystem hierarchy follows a clear standard under /.
+
+Use commands like ls, cp, mv, rm, and chmod for file management.
+
+Permissions control access for user, group, and others.
+
+Proper permission and ownership are crucial for security and automation stability.
